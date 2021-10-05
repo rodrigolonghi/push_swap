@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/04 20:06:24 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/04 21:10:34 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,18 +15,21 @@ NAME = push_swap
 BONUS = checker
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g3 -Wall -Wextra -Werror
 
 LIBFT_DIR = ./libft
 LIBFT = libft/libft.a
 
-SRC_DIR = src
-SRC = $(SRC_DIR)/push_swap.c
+SRC_DIR = ./src
+SRC = $(SRC_DIR)/push_swap.c \
+		$(SRC_DIR)/throw_error.c \
+		$(SRC_DIR)/create_stacks.c \
+		$(SRC_DIR)/check_args.c
 
-INCLUDE_DIR = includes
+INCLUDE_DIR = ./includes
 INCLUDE = $(INCLUDE_DIR)/push_swap.h
 
-OBJ_DIR = objs
+OBJ_DIR = ./objs
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 SRC_DIR_BONUS = ./bonus/src

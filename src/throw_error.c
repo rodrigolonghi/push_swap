@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   throw_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 20:04:42 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/04 20:11:17 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/04 20:12:21 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/04 20:14:11 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
-# include "../../libft/libft.h"
-# include "../../includes/push_swap.h"
+#include "../includes/push_swap.h"
 
-#endif
+void	throw_error(char *msg)
+{
+	ft_putendl_fd("Error", 1);
+	ft_putstr_fd(msg, 1);
+	exit(0);
+}
