@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 20:29:36 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/05 17:54:13 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/05 23:13:34 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static int	check_duplicates(char *argv[], int size)
 	x = 1;
 	while (x < size)
 	{
-		aux = argv[x][0];
+		aux = ft_atoi(argv[x]);
 		y = x + 1;
 		while (y < size)
 		{
-			if (argv[y][0] == aux)
+			if (ft_atoi(argv[y]) == aux)
 				return (0);
 			y++;
 		}

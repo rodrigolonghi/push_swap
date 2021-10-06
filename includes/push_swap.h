@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:29 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/05 18:00:46 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:45:51 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	action_rx(char **stack, char **stackOptional, int size);
 void	action_rrx(char **stack, char **stackOptional, int size);
 void	action_pa(char **stackA, char **stackB, int size);
 void	action_pb(char **stackA, char **stackB, int size);
+int		check_is_sorted(char **stack, int size);
 
 #endif

@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_stacks.c                                    :+:      :+:    :+:   */
+/*   check_is_sorted.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 20:22:37 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/05 23:14:33 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/05 21:37:07 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/05 23:10:02 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	create_stacks(char **stack, int size, char *args[])
+int	check_is_sorted(char **stack, int size)
 {
-	int	p;
+	int	x;
+	int	y;
 
-	p = 0;
-	while (p < size)
+	x = 0;
+	while (x < size - 1)
 	{
-		stack[p] = args[p + 1];
-		p++;
+		y = x + 1;
+		while (y < size)
+		{
+			if (ft_atoi(stack[x]) > ft_atoi(stack[y]))
+				return (0);
+			y++;
+		}
+		x++;
 	}
+	return (1);
 }
