@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/04 21:10:34 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/05 16:14:05 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRC_DIR = ./src
 SRC = $(SRC_DIR)/push_swap.c \
 		$(SRC_DIR)/throw_error.c \
 		$(SRC_DIR)/create_stacks.c \
-		$(SRC_DIR)/check_args.c
+		$(SRC_DIR)/check_args.c \
+		$(SRC_DIR)/actions.c
 
 INCLUDE_DIR = ./includes
 INCLUDE = $(INCLUDE_DIR)/push_swap.h

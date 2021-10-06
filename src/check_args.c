@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 20:29:36 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/04 23:09:58 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/05 17:54:13 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	check_duplicates(char *argv[], int size)
 
 int	check_args(char *argv[], int size)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	x = 1;
 	while (x < size)
