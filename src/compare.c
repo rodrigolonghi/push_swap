@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   compare.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 20:05:15 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/06 00:40:07 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/06 01:59:12 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/06 02:04:59 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+int	compare(char *a, char *b)
 {
-	// int		i;
-	// char	**stack_a;
-	// char	**stack_b;
-
-	if (argc == 1 || argv[0] == NULL)
-		throw_error("Invalid number of arguments!\n");
-	else
-	{
-		printf("%d\n", argc);
-	}
+	if (ft_atoi(a) > ft_atoi(b))
+		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:13:42 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/05 22:23:58 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/06 01:32:50 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	action_pb(char **stack_a, char **stack_b, int size)
 		i++;
 	}
 	stack_a[size - 1] = NULL;
+	ft_putendl_fd("pb", 1);
 }
 
 void	action_pa(char **stack_a, char **stack_b, int size)
@@ -54,9 +55,10 @@ void	action_pa(char **stack_a, char **stack_b, int size)
 		i++;
 	}
 	stack_b[size - 1] = NULL;
+	ft_putendl_fd("pa", 1);
 }
 
-void	action_rrx(char **stack, char **stackOptional, int size)
+void	action_rrx(char **stack, char **stackOptional, int size, char c)
 {
 	char	*aux;
 	int		i;
@@ -80,9 +82,12 @@ void	action_rrx(char **stack, char **stackOptional, int size)
 		}
 		stackOptional[0] = aux;
 	}
+	ft_putstr_fd("rr", 1);
+	ft_putchar_fd(c, 1);
+	ft_putchar_fd('\n', 1);
 }
 
-void	action_rx(char **stack, char **stackOptional, int size)
+void	action_rx(char **stack, char **stackOptional, int size, char c)
 {
 	char	*aux;
 	int		i;
@@ -106,9 +111,12 @@ void	action_rx(char **stack, char **stackOptional, int size)
 		}
 		stackOptional[size - 1] = aux;
 	}
+	ft_putchar_fd('r', 1);
+	ft_putchar_fd(c, 1);
+	ft_putchar_fd('\n', 1);
 }
 
-void	action_sx(char **stack, char **stackOptional)
+void	action_sx(char **stack, char **stackOptional, char c)
 {
 	char	*aux;
 
@@ -121,4 +129,7 @@ void	action_sx(char **stack, char **stackOptional)
 		stackOptional[0] = stackOptional[1];
 		stackOptional[1] = aux;
 	}
+	ft_putchar_fd('s', 1);
+	ft_putchar_fd(c, 1);
+	ft_putchar_fd('\n', 1);
 }
