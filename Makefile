@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/06 02:06:44 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/07 01:47:35 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC = $(SRC_DIR)/push_swap.c \
 		$(SRC_DIR)/actions.c \
 		$(SRC_DIR)/check_is_sorted.c \
 		$(SRC_DIR)/sorter.c \
-		$(SRC_DIR)/compare.c
+		$(SRC_DIR)/compare.c \
+		$(SRC_DIR)/general_case.c
 
 INCLUDE_DIR = ./includes
 INCLUDE = $(INCLUDE_DIR)/push_swap.h
