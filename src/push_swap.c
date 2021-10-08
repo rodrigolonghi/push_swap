@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:32 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/08 00:42:28 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/08 01:34:28 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,23 @@ void	set_args(char **args, char **argv, int argc, int size)
 
 int	get_args(char **argv, int argc)
 {
-	int		n_args;
-	char	*aux;
-	char	*temp;
+	int	n_args;
+	int	x;
 
-	n_args = 1;
-	temp = ft_strchr(argv[1], ' ');
-	aux = temp + 1;
-	while (aux != NULL && argc == 2)
+	n_args = 0;
+	x = 0;
+	if (argc == 2)
 	{
-		aux = ft_strchr(temp + 1, ' ');
-		if (aux != NULL)
-			temp = aux + 1;
-		n_args++;
+		while (x < (int)ft_strlen(argv[1]))
+		{
+			if (argv[1][x] > 32)
+			{
+				while (argv[1][x] > 32)
+					x++;
+				n_args++;
+			}
+			x++;
+		}
 	}
 	if (argc == 2)
 		return (n_args);
@@ -69,6 +73,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		args = ft_calloc(size + 1, sizeof(char *));
+		ft_replace(argv[1], '	', ' ', ft_strlen(argv[1]));
 		args = ft_split(argv[1], ' ');
 	}
 	else
