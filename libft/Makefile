@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/21 00:36:44 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/05 17:51:33 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/08 00:25:37 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ FT_BONUS = ft_lstnew.o \
 	ft_lstiter.o \
 	ft_lstmap.o \
 	ft_haszero.o \
-	get_next_line.o
+	get_next_line.o \
+	ft_replace.o
 
 all: $(NAME)
 
