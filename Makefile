@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/07 01:47:35 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/09 03:15:25 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,15 +21,17 @@ LIBFT_DIR = ./libft
 LIBFT = libft/libft.a
 
 SRC_DIR = ./src
-SRC = $(SRC_DIR)/push_swap.c \
-		$(SRC_DIR)/throw_error.c \
-		$(SRC_DIR)/create_stacks.c \
+SRC = $(SRC_DIR)/actions.c \
 		$(SRC_DIR)/check_args.c \
-		$(SRC_DIR)/actions.c \
 		$(SRC_DIR)/check_is_sorted.c \
-		$(SRC_DIR)/sorter.c \
 		$(SRC_DIR)/compare.c \
-		$(SRC_DIR)/general_case.c
+		$(SRC_DIR)/create_stacks.c \
+		$(SRC_DIR)/insert_sort.c \
+		$(SRC_DIR)/push_swap.c \
+		$(SRC_DIR)/radix_sort.c \
+		$(SRC_DIR)/services.c \
+		$(SRC_DIR)/sorter.c \
+		$(SRC_DIR)/throw_error.c
 
 INCLUDE_DIR = ./includes
 INCLUDE = $(INCLUDE_DIR)/push_swap.h

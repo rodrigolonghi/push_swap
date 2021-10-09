@@ -6,11 +6,31 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:32 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/08 01:34:28 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/09 03:18:28 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	ft_print_stack(char **stack_a, char **stack_b, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (stack_a[i] != NULL)
+			ft_putstr_fd(stack_a[i], 1);
+		else
+			ft_putchar_fd('_', 1);
+		ft_putchar_fd('	', 1);
+		if (stack_b[i] != NULL)
+			ft_putendl_fd(stack_b[i], 1);
+		else
+			ft_putendl_fd("_", 1);
+		i++;
+	}
+}
 
 static void	ft_free(char **stack_a, char **stack_b, char **args)
 {
@@ -82,7 +102,9 @@ int	main(int argc, char **argv)
 	stack_a = ft_calloc(size + 1, sizeof(char *));
 	create_stacks(stack_a, size, args);
 	stack_b = ft_calloc(size + 1, sizeof(char *));
-	sorter(stack_a, stack_b, size);
+	if (check_is_sorted(stack_a, size) == 0)
+		sorter(stack_a, stack_b, size);
 	ft_free(stack_a, stack_b, args);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
