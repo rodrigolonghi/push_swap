@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_index.c                                       :+:      :+:    :+:   */
+/*   services.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 02:07:25 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/09 02:50:15 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/10 01:34:33 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	find_index(char **stack, int size, int nbr)
 	x = 0;
 	while (x < size)
 	{
-		if (ft_atoi(stack[x]) == nbr)
+		if (ft_strncmp(stack[x], "ok", ft_strlen(stack[x])) != 0
+			&& ft_atoi(stack[x]) == nbr)
 			return (x);
 		x++;
 	}
