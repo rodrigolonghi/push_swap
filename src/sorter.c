@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 00:50:01 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/09 03:01:10 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/10 01:12:27 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,8 @@ void	sorter(char **stack_a, char **stack_b, int size)
 	else if (size == 5)
 		case_five(stack_a, stack_b);
 	else
+	{
+		indexing(stack_a, size);
 		radix_sort(stack_a, stack_b, size);
+	}
 }

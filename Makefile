@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/09 03:15:25 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/09 21:57:53 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = $(SRC_DIR)/actions.c \
 		$(SRC_DIR)/compare.c \
 		$(SRC_DIR)/create_stacks.c \
 		$(SRC_DIR)/insert_sort.c \
+		$(SRC_DIR)/normalize.c \
 		$(SRC_DIR)/push_swap.c \
 		$(SRC_DIR)/radix_sort.c \
 		$(SRC_DIR)/services.c \
