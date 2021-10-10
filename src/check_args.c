@@ -6,54 +6,80 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 20:29:36 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/07 22:30:46 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/10 19:16:30 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	check_duplicates(char **args, int size)
+int	check_nbr_limit(t_stacks *s)
+{
+	int		x;
+
+	x = 0;
+	while (x < s->size)
+	{
+		if (ft_strlen(s->args[x]) == 10)
+		{
+			if (ft_memcmp("2147483647", s->args[x], 10) < 0)
+				return (0);
+		}
+		else if (ft_strlen(s->args[x]) == 11)
+		{
+			if (ft_memcmp("-2147483648", s->args[x], 11) < 0)
+				return (0);
+		}
+		else if (ft_strlen(s->args[x]) > 11)
+			return (0);
+		x++;
+	}
+	return (1);
+}
+
+int	check_duplicates(t_stacks *s)
 {
 	int	x;
 	int	y;
 	int	aux;
 
 	x = 0;
-	while (x < size)
+	while (x < s->size)
 	{
-		aux = ft_atoi(args[x]);
+		aux = ft_atoi(s->args[x]);
 		y = x + 1;
-		while (y < size)
+		while (y < s->size)
 		{
-			if (ft_atoi(args[y]) == aux)
+			if (ft_atoi(s->args[y]) == aux)
 				return (0);
 			y++;
 		}
 		x++;
 	}
-	return (1);
+	return (check_nbr_limit(s));
 }
 
-void	check_args(char **args, int size)
+int	check_args(t_stacks *s)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	while (x < size)
+	while (x < s->size)
 	{
 		y = 0;
-		while (args[x][y])
+		while (s->args[x][y])
 		{
-			if (!ft_isdigit(args[x][y])
-				&& args[x][y] != '-' && args[x][y] != '+')
-				throw_error("Invalid arguments!\n");
-			if (!ft_isdigit(args[x][y]) && y != 0)
-				throw_error("Invalid arguments!\n");
+			if (!ft_isdigit(s->args[x][y])
+				&& s->args[x][y] != '-' && s->args[x][y] != '+')
+				return (0);
+			if (!ft_isdigit(s->args[x][y]) && y != 0)
+				return (0);
+			if (ft_memcmp("-", s->args[x], ft_strlen(s->args[x])) == 0
+				|| ft_memcmp("+", s->args[x], ft_strlen(s->args[x])) == 0)
+				return (0);
 			y++;
 		}
 		x++;
 	}
-	if (check_duplicates(args, size) == 0)
-		throw_error("There are duplicate numbers!\n");
+	return (check_duplicates(s));
 }

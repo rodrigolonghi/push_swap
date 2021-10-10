@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/09 21:57:53 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/10 20:15:53 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME = push_swap
 
 BONUS = checker
 
-CC = gcc
-FLAGS = -g3 -Wall -Wextra -Werror
+CC = clang
+FLAGS = -g -Wall -Wextra -Werror
+SANITIZE = -fsanitize=address
 
 LIBFT_DIR = ./libft
 LIBFT = libft/libft.a
@@ -52,7 +53,7 @@ OBJ_BONUS = $(SRC_BONUS:$(SRC_DIR_BONUS)/%.c=$(OBJ_DIR_BONUS)/%.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	@$(CC) -lm $(OBJ) $(LIBFT) -o $(NAME)
+	@$(CC) -lm $(OBJ) $(LIBFT) $(SANITIZE) -o $(NAME)
 	@echo "\033[32mPush swap compiled!"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE)

@@ -6,55 +6,55 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:13:42 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/06 01:32:50 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/10 17:53:37 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	action_pb(char **stack_a, char **stack_b, int size)
+void	action_pb(t_stacks *s)
 {
 	char	*aux;
 	int		i;
 
-	i = size - 1;
-	aux = stack_a[0];
+	i = s->size - 1;
+	aux = s->stack_a[0];
 	while (i > 0)
 	{
-		stack_b[i] = stack_b[i - 1];
+		s->stack_b[i] = s->stack_b[i - 1];
 		i--;
 	}
-	stack_b[0] = aux;
+	s->stack_b[0] = aux;
 	i = 0;
-	while (i < size - 1)
+	while (i < s->size - 1)
 	{
-		stack_a[i] = stack_a[i + 1];
+		s->stack_a[i] = s->stack_a[i + 1];
 		i++;
 	}
-	stack_a[size - 1] = NULL;
+	s->stack_a[s->size - 1] = NULL;
 	ft_putendl_fd("pb", 1);
 }
 
-void	action_pa(char **stack_a, char **stack_b, int size)
+void	action_pa(t_stacks *s)
 {
 	char	*aux;
 	int		i;
 
-	i = size - 1;
-	aux = stack_b[0];
+	i = s->size - 1;
+	aux = s->stack_b[0];
 	while (i > 0)
 	{
-		stack_a[i] = stack_a[i - 1];
+		s->stack_a[i] = s->stack_a[i - 1];
 		i--;
 	}
-	stack_a[0] = aux;
+	s->stack_a[0] = aux;
 	i = 0;
-	while (i < size - 1)
+	while (i < s->size - 1)
 	{
-		stack_b[i] = stack_b[i + 1];
+		s->stack_b[i] = s->stack_b[i + 1];
 		i++;
 	}
-	stack_b[size - 1] = NULL;
+	s->stack_b[s->size - 1] = NULL;
 	ft_putendl_fd("pa", 1);
 }
 

@@ -6,56 +6,40 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:32 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/09 03:18:28 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/10 19:19:25 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_print_stack(char **stack_a, char **stack_b, int size)
+void	ft_free(t_stacks *s)
 {
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (stack_a[i] != NULL)
-			ft_putstr_fd(stack_a[i], 1);
-		else
-			ft_putchar_fd('_', 1);
-		ft_putchar_fd('	', 1);
-		if (stack_b[i] != NULL)
-			ft_putendl_fd(stack_b[i], 1);
-		else
-			ft_putendl_fd("_", 1);
-		i++;
-	}
+	if (s->stack_a != NULL)
+		free(s->stack_a);
+	if (s->stack_b != NULL)
+		free(s->stack_b);
+	if (s->args != NULL)
+		free(s->args);
 }
 
-static void	ft_free(char **stack_a, char **stack_b, char **args)
-{
-	free(stack_a);
-	free(stack_b);
-	free(args);
-}
-
-void	set_args(char **args, char **argv, int argc, int size)
+void	create_args(int argc, char **argv, t_stacks *s)
 {
 	int	x;
 
-	x = 0;
-	if (argc != 2)
+	if (argc == 2)
+		s->args = ft_split(argv[1], ' ');
+	else
 	{
-		while (x < size)
+		x = 0;
+		while (x < s->size)
 		{
-			args[x] = argv[x + 1];
+			s->args[x] = argv[x + 1];
 			x++;
 		}
 	}
-	check_args(args, size);
 }
 
-int	get_args(char **argv, int argc)
+int	get_args_number(char **argv, int argc)
 {
 	int	n_args;
 	int	x;
@@ -82,29 +66,25 @@ int	get_args(char **argv, int argc)
 
 int	main(int argc, char **argv)
 {
-	char	**stack_a;
-	char	**stack_b;
-	char	**args;
-	int		size;
+	t_stacks	s;
 
-	size = get_args(argv, argc);
-	if (argc < 2)
-		throw_error("Invalid number of arguments!\n");
-	if (argc == 2)
+	s.size = get_args_number(argv, argc);
+	if (s.size > 0)
 	{
-		args = ft_calloc(size + 1, sizeof(char *));
-		ft_replace(argv[1], '	', ' ', ft_strlen(argv[1]));
-		args = ft_split(argv[1], ' ');
+		s.args = ft_calloc(s.size, sizeof(char *));
+		create_args(argc, argv, &s);
+		if (check_args(&s) == 1)
+		{
+			s.stack_a = ft_calloc(s.size + 1, sizeof(char *));
+			s.stack_b = ft_calloc(s.size + 1, sizeof(char *));
+			create_stacks(&s);
+			if (check_is_sorted(&s) == 0)
+				sorter(&s);
+		}
+		else
+			throw_error(&s);
 	}
-	else
-		args = ft_calloc(argc, sizeof(char *));
-	set_args(args, argv, argc, size);
-	stack_a = ft_calloc(size + 1, sizeof(char *));
-	create_stacks(stack_a, size, args);
-	stack_b = ft_calloc(size + 1, sizeof(char *));
-	if (check_is_sorted(stack_a, size) == 0)
-		sorter(stack_a, stack_b, size);
-	ft_free(stack_a, stack_b, args);
-	exit(EXIT_SUCCESS);
+	ft_free(&s);
+	exit(0);
 	return (0);
 }

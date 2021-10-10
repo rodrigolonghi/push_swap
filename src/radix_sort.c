@@ -6,36 +6,36 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 18:54:36 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 01:45:52 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/10 18:03:06 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	radix_sort(char **stack_a, char **stack_b, int size)
+void	radix_sort(t_stacks *s)
 {
 	int	x;
 	int	len;
 	int	moved;
 
-	len = ft_strlen(stack_a[0]) - 1;
+	len = ft_strlen(s->stack_a[0]) - 1;
 	while (len >= 0)
 	{
 		x = 0;
 		moved = 0;
-		while (x < size)
+		while (x < s->size)
 		{
-			if (stack_a[0][len] == '0')
+			if (s->stack_a[0][len] == '0')
 			{
-				action_pb(stack_a, stack_b, size);
+				action_pb(s);
 				moved++;
 			}
 			else
-				action_rx(stack_a, NULL, size - moved, 'a');
+				action_rx(s->stack_a, NULL, s->size - moved, 'a');
 			x++;
 		}
 		while (moved-- > 0)
-			action_pa(stack_a, stack_b, size);
+			action_pa(s);
 		len--;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 21:34:03 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 01:09:07 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/10 19:26:04 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	to_binary(char **stack_a, char **stack_temp, int size)
 	free(temp);
 }
 
-void	indexing(char **stack_a, int size)
+void	indexing(t_stacks *s)
 {
 	int		x;
 	int		y;
@@ -77,23 +77,23 @@ void	indexing(char **stack_a, int size)
 	char	**stack_temp;
 
 	y = 0;
-	stack_temp = ft_calloc(size, sizeof(char *));
-	while (y < size)
+	stack_temp = ft_calloc(s->size, sizeof(char *));
+	while (y < s->size)
 	{
 		x = 0;
 		aux = "2147483647";
-		while (x < size)
+		while (x < s->size)
 		{
-			if (compare(stack_a[x], aux) == 0
-				&& ft_strncmp(stack_a[x], "ok", ft_strlen(stack_a[x])) != 0)
-				aux = stack_a[x];
+			if (compare(s->stack_a[x], aux) == -1 && ft_strncmp(s->stack_a[x],
+					"ok", ft_strlen(s->stack_a[x])) != 0)
+				aux = s->stack_a[x];
 			x++;
 		}
-		stack_temp[find_index(stack_a, size, ft_atoi(aux))] = ft_itoa(y);
-		stack_a[find_index(stack_a, size, ft_atoi(aux))] = "ok";
+		stack_temp[find_index(s->stack_a, s->size, ft_atoi(aux))] = ft_itoa(y);
+		s->stack_a[find_index(s->stack_a, s->size, ft_atoi(aux))] = "ok";
 		y++;
 	}
-	to_binary(stack_a, stack_temp, size);
-	add_zero(stack_a, size);
+	to_binary(s->stack_a, stack_temp, s->size);
+	add_zero(s->stack_a, s->size);
 	free(stack_temp);
 }
