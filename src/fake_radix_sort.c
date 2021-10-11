@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert_sort.c                                      :+:      :+:    :+:   */
+/*   fake_radix_sort.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 01:47:04 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 21:35:03 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/11 00:40:10 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/11 03:02:46 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	insert_sort(t_stacks *s)
+void	fake_radix_sort(t_stacks *f, int *moves)
 {
-	int		i;
-	int		x;
-	int		y;
+	int	x;
+	int	len;
+	int	moved;
 
-	i = 0;
-	while (i < s->size && check_is_sorted(s) == 0)
+	len = ft_strlen(f->stack_a[0]) - 1;
+	while (len >= 0 && check_is_sorted(f) == 0)
 	{
-		x = 1;
-		y = 0;
-		while (x < s->size - i)
+		x = 0;
+		moved = 0;
+		while (x < f->size && check_radix_is_sorter(f) == 0)
 		{
-			if (compare(s->stack_a[y], s->stack_a[x]) == 1)
-				y = x;
+			if (f->stack_a[0][len] == '0')
+			{
+				moves[0] += fake_action_pb(f);
+				moved++;
+			}
+			else
+				moves[0] += fake_action_rx(f->stack_a, NULL, f->size - moved);
 			x++;
 		}
-		to_top(s->stack_a, s->size - i, y, 'a');
-		action_pb(s);
-		i++;
-	}
-	i = 0;
-	while (i < s->size)
-	{
-		action_pa(s);
-		i++;
+		while (moved-- > 0)
+			moves[0] += fake_action_pa(f);
+		len--;
 	}
 }

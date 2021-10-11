@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:29 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 20:25:03 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/11 02:04:45 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,17 @@ void	sorter(t_stacks *s);
 void	to_binary(char **stack_a, char **stack_temp, int size);
 void	to_top(char **stack, int size, int pos, char c);
 void	throw_error(t_stacks *s);
+int		fake_action_sx(char **stack, char **stackOptional);
+int		fake_action_rx(char **stack, char **stackOptional, int size);
+int		fake_action_rrx(char **stack, char **stackOptional, int size);
+int		fake_action_pa(t_stacks *s);
+int		fake_action_pb(t_stacks *s);
+void	duplicate_stack(t_stacks *f, t_stacks *s);
+int		simulate(t_stacks *s);
+void	fake_insert_sort(t_stacks *f, int *moves);
+void	fake_radix_sort(t_stacks *f, int *moves);
+int		fake_to_top(char **stack, int size, int pos);
+int		check_radix_is_sorter(t_stacks *s);
+int		check_reverse_sorter(t_stacks *s);
 
 #endif

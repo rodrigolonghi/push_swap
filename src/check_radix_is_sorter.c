@@ -1,42 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert_sort.c                                      :+:      :+:    :+:   */
+/*   check_radix_is_sorter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 01:47:04 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 21:35:03 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/11 01:59:46 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/11 02:06:24 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	insert_sort(t_stacks *s)
+int	check_reverse_sorter(t_stacks *s)
 {
-	int		i;
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (i < s->size && check_is_sorted(s) == 0)
+	x = 0;
+	while (x < s->size - 1 && s->stack_a[x] != NULL)
 	{
-		x = 1;
-		y = 0;
-		while (x < s->size - i)
+		y = x + 1;
+		while (y < s->size && s->stack_a[y] != NULL)
 		{
-			if (compare(s->stack_a[y], s->stack_a[x]) == 1)
-				y = x;
-			x++;
+			if (ft_atoi(s->stack_a[x]) < ft_atoi(s->stack_a[y]))
+				return (0);
+			y++;
 		}
-		to_top(s->stack_a, s->size - i, y, 'a');
-		action_pb(s);
-		i++;
+		x++;
 	}
-	i = 0;
-	while (i < s->size)
-	{
-		action_pa(s);
-		i++;
-	}
+	return (1);
+}
+
+int	check_radix_is_sorter(t_stacks *s)
+{
+	if (check_is_sorted(s) == 1)
+		return (check_reverse_sorter(s));
+	return (0);
 }

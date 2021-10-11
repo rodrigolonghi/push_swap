@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert_sort.c                                      :+:      :+:    :+:   */
+/*   fake_insert_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 01:47:04 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 21:35:03 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/11 00:40:14 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/11 01:36:38 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	insert_sort(t_stacks *s)
+void	fake_insert_sort(t_stacks *f, int *moves)
 {
 	int		i;
 	int		x;
 	int		y;
 
 	i = 0;
-	while (i < s->size && check_is_sorted(s) == 0)
+	while (i < f->size && check_is_sorted(f) == 0)
 	{
 		x = 1;
 		y = 0;
-		while (x < s->size - i)
+		while (x < f->size - i)
 		{
-			if (compare(s->stack_a[y], s->stack_a[x]) == 1)
+			if (compare(f->stack_a[y], f->stack_a[x]) == 1)
 				y = x;
 			x++;
 		}
-		to_top(s->stack_a, s->size - i, y, 'a');
-		action_pb(s);
+		moves[0] += fake_to_top(f->stack_a, f->size - i, y);
+		moves[0] += fake_action_pb(f);
 		i++;
 	}
 	i = 0;
-	while (i < s->size)
+	while (i < f->size && f->stack_b[0] != NULL)
 	{
-		action_pa(s);
+		moves[0] += fake_action_pa(f);
 		i++;
 	}
 }
