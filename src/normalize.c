@@ -6,11 +6,33 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 21:34:03 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 19:26:04 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/14 01:21:59 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	to_binary(int nbr)
+{
+	int	aux;
+	int	exp;
+
+	aux = 0;
+	exp = 0;
+	while (nbr != 0)
+	{
+		if (exp > 0)
+			aux += nbr % 2 * exp;
+		else
+			aux = nbr % 2;
+		nbr /= 2;
+		if (exp == 0)
+			exp = 10;
+		else
+			exp *= 10;
+	}
+	return (aux);
+}
 
 void	add_zero(char **stack_a, int size)
 {
@@ -40,33 +62,18 @@ void	add_zero(char **stack_a, int size)
 	free(aux);
 }
 
-void	to_binary(char **stack_a, char **stack_temp, int size)
+void	stack_to_binary(char **stack_a, char **stack_temp, int size)
 {
-	int		*temp;
+	int		x;
 	char	*aux;
 
-	temp = ft_calloc(3, sizeof(int));
-	while (temp[0] < size)
+	x = 0;
+	while (x < size)
 	{
-		temp[1] = 0;
-		temp[2] = 0;
-		aux = stack_temp[temp[0]];
-		while (ft_memcmp(aux, "0", ft_strlen(aux)))
-		{
-			if (temp[1] > 0)
-				temp[2] += ft_atoi(aux) % 2 * temp[1];
-			else
-				temp[2] = ft_atoi(aux) % 2;
-			aux = ft_itoa(ft_atoi(aux) / 2);
-			if (temp[1] == 0)
-				temp[1] = 10;
-			else
-				temp[1] *= 10;
-		}
-		stack_a[temp[0]] = ft_itoa(temp[2]);
-		temp[0]++;
+		aux = stack_temp[x];
+		stack_a[x] = ft_itoa(to_binary(ft_atoi(aux)));
+		x++;
 	}
-	free(temp);
 }
 
 void	indexing(t_stacks *s)
@@ -93,7 +100,7 @@ void	indexing(t_stacks *s)
 		s->stack_a[find_index(s->stack_a, s->size, ft_atoi(aux))] = "ok";
 		y++;
 	}
-	to_binary(s->stack_a, stack_temp, s->size);
+	stack_to_binary(s->stack_a, stack_temp, s->size);
 	add_zero(s->stack_a, s->size);
 	free(stack_temp);
 }

@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:29 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/11 02:04:45 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/14 01:22:03 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	indexing(t_stacks *s);
 void	insert_sort(t_stacks *s);
 void	radix_sort(t_stacks *s);
 void	sorter(t_stacks *s);
-void	to_binary(char **stack_a, char **stack_temp, int size);
+int		to_binary(int nbr);
+void	stack_to_binary(char **stack_a, char **stack_temp, int size);
 void	to_top(char **stack, int size, int pos, char c);
 void	throw_error(t_stacks *s);
 int		fake_action_sx(char **stack, char **stackOptional);
@@ -62,5 +63,6 @@ void	fake_radix_sort(t_stacks *f, int *moves);
 int		fake_to_top(char **stack, int size, int pos);
 int		check_radix_is_sorter(t_stacks *s);
 int		check_reverse_sorter(t_stacks *s);
+void	optimized_insert_sort(t_stacks *s);
 
 #endif

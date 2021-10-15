@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 23:50:37 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/11 02:34:21 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/15 03:25:33 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	duplicate_stack(t_stacks *f, t_stacks *s)
 	f->stack_b = ft_calloc(s->size + 1, sizeof(char *));
 	while (x < s->size)
 	{
-		f->stack_a[x] = s->stack_a[x];
+		if (s->stack_a[x] != NULL)
+			f->stack_a[x] = s->stack_a[x];
+		if (s->stack_b[x] != NULL)
+			f->stack_b[x] = s->stack_b[x];
 		x++;
 	}
 }
