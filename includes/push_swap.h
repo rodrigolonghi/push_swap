@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:29 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/15 16:59:19 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/21 01:26:22 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,9 @@ int		check_reverse_sorter(t_stacks *s);
 void	hundred_or_less(t_stacks *s);
 void	back_to_a(t_stacks *s, t_stacks *f);
 int		get_relative_size(char **stack, int original_size);
+void	order_b(t_stacks *s, int time);
+void	find_top_and_bottom(int	*tb, t_stacks *s, int time);
+void	find_smaller_and_bigger(t_stacks *s, int *sb);
+void	hundred_or_less2(t_stacks *s);
 
 #endif

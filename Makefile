@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/15 16:10:48 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/21 01:26:43 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,9 @@ SRC = $(SRC_DIR)/actions.c \
 		$(SRC_DIR)/sorter.c \
 		$(SRC_DIR)/throw_error.c \
 		$(SRC_DIR)/hundred_or_less.c \
-		$(SRC_DIR)/back_to_a.c
+		$(SRC_DIR)/back_to_a.c \
+		$(SRC_DIR)/order_b.c \
+		$(SRC_DIR)/hundred_or_less2.c
 
 INCLUDE_DIR = ./includes
 INCLUDE = $(INCLUDE_DIR)/push_swap.h

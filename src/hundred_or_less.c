@@ -6,13 +6,13 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 00:00:00 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/19 01:55:06 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/23 01:39:14 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	find_top_and_bottom(int	*tb, t_stacks *s, int time)
+void	find_top_and_bottom(int	*tb, t_stacks *s, int time)
 {
 	int	x;
 
@@ -63,7 +63,7 @@ static void	second_half_to_b(t_stacks *s, t_stacks *f)
 		else
 			to_top(s->stack_a, s->size, tb[1], 'a');
 		ft_free(f);
-		action_pb(s);
+		action_pb(s); //order_b(s, 1);
 		x++;
 	}
 	free(tb);
@@ -89,7 +89,7 @@ static void	first_half_to_b(t_stacks *s, t_stacks *f)
 			to_top(s->stack_a, s->size, tb[0], 'a');
 		else
 			to_top(s->stack_a, s->size, tb[1], 'a');
-		action_pb(s);
+		action_pb(s); //order_b(s, 1);
 		ft_free(f);
 		x++;
 	}
@@ -102,6 +102,9 @@ void	hundred_or_less(t_stacks *s)
 
 	first_half_to_b(s, &f);
 	back_to_a(s, &f);
-	second_half_to_b(s, &f);
-	back_to_a(s, &f);
+	if (check_is_sorted(s) == 0)
+	{
+		second_half_to_b(s, &f);
+		back_to_a(s, &f);
+	}
 }
