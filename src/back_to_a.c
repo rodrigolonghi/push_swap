@@ -6,31 +6,17 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:09:49 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/23 01:16:34 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/24 20:02:19 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	find_smaller_and_bigger(t_stacks *s, int *sb)
+static int	smart_back(t_stacks *s, t_stacks *f, int *sb)
 {
-	int	x;
+	int	on_top;
 
-	sb[0] = 0;
-	sb[1] = 0;
-	x = 1;
-	while (x < s->size && s->stack_b[x] != NULL)
-	{
-		if (compare(s->stack_b[x], s->stack_b[sb[0]]) == -1)
-			sb[0] = x;
-		if (compare(s->stack_b[x], s->stack_b[sb[1]]) == 1)
-			sb[1] = x;
-		x++;
-	}
-}
-
-static void	back_to_a2(t_stacks *s, t_stacks *f, int *sb, int *aux)
-{
+	on_top = 0;
 	find_smaller_and_bigger(s, sb);
 	if (fake_to_top(f->stack_b, f->size, sb[0])
 		< fake_to_top(f->stack_b, f->size, sb[1]))
@@ -43,31 +29,35 @@ static void	back_to_a2(t_stacks *s, t_stacks *f, int *sb, int *aux)
 	{
 		to_top(s->stack_b, f->size, sb[1], 'b');
 		action_pa(s);
-		aux[2]++;
+		on_top++;
 	}
+	return (on_top);
 }
 
 void	back_to_a(t_stacks *s, t_stacks *f)
 {
-	int			*sb;
-	int			*aux;
+	int	*sb;
+	int	size_b;
+	int	x;
+	int	on_top;
 
-	aux = ft_calloc(3, sizeof(int));
-	aux[0] = get_relative_size(s->stack_b, s->size);
+	x = 0;
+	on_top = 0;
+	size_b = find_relative_size(s->stack_b, s->size);
 	sb = ft_calloc(2, sizeof(int));
-	while (aux[1] < aux[0])
+	while (x < size_b)
 	{
 		duplicate_stack(f, s);
-		if (aux[0] - aux[1] > 1)
-			back_to_a2(s, f, sb, aux);
+		if (size_b - x > 1)
+			on_top += smart_back(s, f, sb);
 		else
 			action_pa(s);
-		aux[1]++;
-		ft_free(f);
+		x++;
+		free_stack(f);
 	}
-	while (aux[2] >= 0)
+	while (on_top >= 0)
 	{
 		action_rx(s->stack_a, NULL, s->size, 'a');
-		aux[2]--;
+		on_top--;
 	}
 }

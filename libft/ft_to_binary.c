@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   order_b.c                                          :+:      :+:    :+:   */
+/*   ft_to_binary.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 21:18:45 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/20 23:06:42 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/24 19:52:30 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/24 19:52:58 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-void	order_b(t_stacks *s, int time)
+int	ft_to_binary(int nbr)
 {
-	int	size_b;
-	int	quarter;
+	int	aux;
+	int	exp;
 
-	size_b = get_relative_size(s->stack_b, s->size);
-	if (time == 1)
-		quarter = to_binary(s->size / 4);
-	else
-		quarter = to_binary(s->size * 3 / 4);
-	if (size_b > 0)
+	aux = 0;
+	exp = 0;
+	while (nbr != 0)
 	{
-		if (ft_atoi(s->stack_a[0]) > quarter)
-			action_pb(s);
+		if (exp > 0)
+			aux += nbr % 2 * exp;
 		else
-		{
-			action_pb(s);
-			action_rx(s->stack_b, NULL, s->size, 'b');
-		}
+			aux = nbr % 2;
+		nbr /= 2;
+		if (exp == 0)
+			exp = 10;
+		else
+			exp *= 10;
 	}
-	else
-		action_pb(s);
+	return (aux);
 }

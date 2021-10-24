@@ -6,33 +6,11 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 21:34:03 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/14 01:21:59 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/24 20:00:50 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int	to_binary(int nbr)
-{
-	int	aux;
-	int	exp;
-
-	aux = 0;
-	exp = 0;
-	while (nbr != 0)
-	{
-		if (exp > 0)
-			aux += nbr % 2 * exp;
-		else
-			aux = nbr % 2;
-		nbr /= 2;
-		if (exp == 0)
-			exp = 10;
-		else
-			exp *= 10;
-	}
-	return (aux);
-}
 
 void	add_zero(char **stack_a, int size)
 {
@@ -71,7 +49,7 @@ void	stack_to_binary(char **stack_a, char **stack_temp, int size)
 	while (x < size)
 	{
 		aux = stack_temp[x];
-		stack_a[x] = ft_itoa(to_binary(ft_atoi(aux)));
+		stack_a[x] = ft_itoa(ft_to_binary(ft_atoi(aux)));
 		x++;
 	}
 }

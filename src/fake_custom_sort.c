@@ -1,20 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   throw_error.c                                      :+:      :+:    :+:   */
+/*   fake_custom_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/10 04:47:13 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 18:22:01 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/23 20:14:14 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/24 20:03:51 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-
-void	throw_error(t_stacks *s)
-{
-	ft_putendl_fd("Error", 2);
-	ft_free(s);
-	exit(1);
-}
+// #include "../includes/push_swap.h"

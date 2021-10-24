@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   services.c                                         :+:      :+:    :+:   */
+/*   other_services.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 02:07:25 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/15 17:14:23 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/24 19:11:59 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/24 20:02:19 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int	get_relative_size(char **stack, int original_size)
-{
-	int	x;
-
-	x = 0;
-	while (x < original_size)
-	{
-		if (stack[x] == NULL)
-			break ;
-		x++;
-	}
-	return (x);
-}
 
 int	fake_to_top(char **stack, int size, int pos)
 {
@@ -32,7 +18,7 @@ int	fake_to_top(char **stack, int size, int pos)
 	char	*nbr;
 	int		relative_size;
 
-	relative_size = get_relative_size(stack, size);
+	relative_size = find_relative_size(stack, size);
 	moves = 0;
 	nbr = stack[pos];
 	if (pos > relative_size / 2)
@@ -58,7 +44,7 @@ void	to_top(char **stack, int size, int pos, char c)
 	char	*nbr;
 	int		relative_size;
 
-	relative_size = get_relative_size(stack, size);
+	relative_size = find_relative_size(stack, size);
 	nbr = stack[pos];
 	if (pos > relative_size / 2)
 	{
@@ -77,17 +63,18 @@ void	to_top(char **stack, int size, int pos, char c)
 	}
 }
 
-int	find_index(char **stack, int size, int nbr)
+void	throw_error(t_stacks *s)
 {
-	int	x;
+	ft_putendl_fd("Error", 2);
+	free_stack(s);
+	exit(1);
+}
 
-	x = 0;
-	while (x < size)
-	{
-		if (ft_strncmp(stack[x], "ok", ft_strlen(stack[x])) != 0
-			&& ft_atoi(stack[x]) == nbr)
-			return (x);
-		x++;
-	}
-	return (-1);
+int	compare(char *a, char *b)
+{
+	if (ft_atoi(a) > ft_atoi(b))
+		return (1);
+	else if (ft_atoi(a) < ft_atoi(b))
+		return (-1);
+	return (0);
 }

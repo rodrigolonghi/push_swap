@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 00:50:01 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/23 01:37:54 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:54:09 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	sorter(t_stacks *s)
 	else if (s->size == 5)
 		case_five(s);
 	else
-		hundred_or_less(s);
+		custom_sort(s);
 	// else if (simulate(s) == 2)
 	// 	insert_sort(s);
 	// else

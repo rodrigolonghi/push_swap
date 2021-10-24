@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 18:54:36 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/11 03:02:56 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:53:50 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	radix_sort(t_stacks *s)
 	{
 		x = 0;
 		moved = 0;
-		while (x < s->size && check_radix_is_sorter(s) == 0)
+		while (x < s->size)
 		{
 			if (s->stack_a[0][len] == '0')
 			{

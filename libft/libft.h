@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 00:57:10 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/08 00:38:34 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/24 19:53:48 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_haszero(int *s, int size);
 int		get_next_line(int fd, char **line);
 void	ft_replace(void *content, int a, int b, int n);
+int		ft_to_binary(int nbr);
 
 #endif

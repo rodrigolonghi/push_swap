@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 00:40:10 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/11 03:02:46 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:53:19 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	fake_radix_sort(t_stacks *f, int *moves)
 	{
 		x = 0;
 		moved = 0;
-		while (x < f->size && check_radix_is_sorter(f) == 0)
+		while (x < f->size)
 		{
 			if (f->stack_a[0][len] == '0')
 			{

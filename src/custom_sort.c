@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hundred_or_less2.c                                 :+:      :+:    :+:   */
+/*   custom_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 01:25:34 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/23 01:37:36 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/24 20:04:41 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ static void	to_a(t_stacks *s, int chunk, int x)
 	duplicate_stack(&f, s);
 	if (chunk > 0)
 	{
-		relative_size = get_relative_size(s->stack_a, s->size);
+		relative_size = find_relative_size(s->stack_a, s->size);
 		index = find_index(s->stack_a, s->size,
-				to_binary(s->size / x * chunk - 1));
+				ft_to_binary(s->size / x * chunk - 1));
 		if (index < relative_size / 2)
 		{
 			while (ft_atoi(s->stack_a[relative_size - 1])
-				!= to_binary(s->size / x * chunk - 1))
+				!= ft_to_binary(s->size / x * chunk - 1))
 				action_rx(s->stack_a, NULL, s->size, 'a');
 		}
 		else
 			while (ft_atoi(s->stack_a[relative_size - 1])
-				!= to_binary(s->size / x * chunk - 1))
+				!= ft_to_binary(s->size / x * chunk - 1))
 				action_rrx(s->stack_a, NULL, s->size, 'a');
 	}
 	back_to_a(s, &f);
 }
 
-static void	send_best_to_b(int *tb, t_stacks *s)
+static void	send_best_to_b(int *tb, t_stacks *s, int chunk, int x)
 {
 	t_stacks	f;
 
@@ -48,30 +48,21 @@ static void	send_best_to_b(int *tb, t_stacks *s)
 		to_top(s->stack_a, s->size, tb[0], 'a');
 	else
 		to_top(s->stack_a, s->size, tb[1], 'a');
-	action_pb(s);
-	ft_free(&f);
-}
-
-static void	get_top_and_bottom(int *tb, t_stacks *s, int chunk, int qtd)
-{
-	int	x;
-
-	x = 0;
-	while (x < s->size && (tb[0] == -1 || tb[1] == -1))
+	if (find_relative_size(s->stack_b, s->size) > 0)
 	{
-		if (s->stack_a[x] != NULL
-			&& (ft_atoi(s->stack_a[x]) >= to_binary(chunk * qtd)
-				&& ft_atoi(s->stack_a[x]) < to_binary(qtd * (chunk + 1)))
-			&& tb[0] == -1)
-			tb[0] = x;
-		if (s->stack_a[s->size - 1 - x] != NULL
-			&& (ft_atoi(s->stack_a[s->size - 1 - x]) >= to_binary(chunk * qtd)
-				&& ft_atoi(s->stack_a[s->size - 1 - x])
-				< to_binary(qtd * (chunk + 1)))
-			&& tb[1] == -1)
-			tb[1] = s->size - 1 - x;
-		x++;
+		if (ft_atoi(s->stack_a[0]) > ft_to_binary((s->size / x
+					* (chunk + 1)) / 2))
+			action_pb(s);
+		else
+		{
+			action_pb(s);
+			action_rx(s->stack_b, NULL, s->size, 'b');
+		}
 	}
+	else
+		action_pb(s);
+	//organize_b(s->stack_a[0], s->stack_b);
+	free_stack(&f);
 }
 
 static void	to_b(t_stacks *s, int chunk, int x)
@@ -83,16 +74,26 @@ static void	to_b(t_stacks *s, int chunk, int x)
 	tb = malloc(2 * sizeof(int));
 	while (qtd > 0)
 	{
-		tb[0] = -1;
-		tb[1] = -1;
-		get_top_and_bottom(tb, s, chunk, s->size / x);
-		send_best_to_b(tb, s);
+		if (chunk == x - 1 && s->size % x != 0)
+			break ;
+		find_top_and_bottom(tb, s, chunk * s->size / x,
+			s->size / x * (chunk + 1));
+		send_best_to_b(tb, s, chunk, x);
 		qtd--;
+	}
+	if (chunk == x - 1 && s->size % x != 0)
+	{
+		qtd = s->size / x + s->size % x;
+		while (qtd > 0)
+		{
+			action_pb(s);
+			qtd--;
+		}
 	}
 	free(tb);
 }
 
-void	hundred_or_less2(t_stacks *s)
+void	custom_sort(t_stacks *s)
 {
 	int	chunk;
 	int	x;

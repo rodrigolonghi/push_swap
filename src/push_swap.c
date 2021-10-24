@@ -6,21 +6,11 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:32 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 19:19:25 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/24 20:01:46 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	ft_free(t_stacks *s)
-{
-	if (s->stack_a != NULL)
-		free(s->stack_a);
-	if (s->stack_b != NULL)
-		free(s->stack_b);
-	if (s->args != NULL)
-		free(s->args);
-}
 
 void	create_args(int argc, char **argv, t_stacks *s)
 {
@@ -84,7 +74,7 @@ int	main(int argc, char **argv)
 		else
 			throw_error(&s);
 	}
-	ft_free(&s);
+	free_stack(&s);
 	exit(0);
 	return (0);
 }

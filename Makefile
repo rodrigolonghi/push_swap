@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/21 01:26:43 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/24 19:59:08 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,26 +23,22 @@ LIBFT = libft/libft.a
 
 SRC_DIR = ./src
 SRC = $(SRC_DIR)/actions.c \
-		$(SRC_DIR)/check_args.c \
-		$(SRC_DIR)/check_is_sorted.c \
-		$(SRC_DIR)/check_radix_is_sorter.c \
-		$(SRC_DIR)/compare.c \
-		$(SRC_DIR)/create_stacks.c \
+		$(SRC_DIR)/back_to_a.c \
+		$(SRC_DIR)/checkers.c \
+		$(SRC_DIR)/custom_sort.c \
 		$(SRC_DIR)/fake_actions.c \
+		$(SRC_DIR)/fake_custom_sort.c \
 		$(SRC_DIR)/fake_insert_sort.c \
 		$(SRC_DIR)/fake_radix_sort.c \
+		$(SRC_DIR)/find_services.c \
 		$(SRC_DIR)/insert_sort.c \
 		$(SRC_DIR)/normalize.c \
+		$(SRC_DIR)/other_services.c \
 		$(SRC_DIR)/push_swap.c \
 		$(SRC_DIR)/radix_sort.c \
-		$(SRC_DIR)/services.c \
 		$(SRC_DIR)/simulate.c \
 		$(SRC_DIR)/sorter.c \
-		$(SRC_DIR)/throw_error.c \
-		$(SRC_DIR)/hundred_or_less.c \
-		$(SRC_DIR)/back_to_a.c \
-		$(SRC_DIR)/order_b.c \
-		$(SRC_DIR)/hundred_or_less2.c
+		$(SRC_DIR)/stack_services.c
 
 INCLUDE_DIR = ./includes
 INCLUDE = $(INCLUDE_DIR)/push_swap.h
