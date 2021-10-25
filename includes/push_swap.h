@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:29 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/25 02:14:38 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:40:29 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int		find_smaller_index(char **stack, int size);
 void	fake_back_to_a(t_stacks *s, t_stacks *f, int *moves);
 void	write_next_move(t_stacks *s, char *move);
 void	put_moves(t_stacks *s);
+void	clean_moves(t_stacks *s, char **action, int l, char c);
 
 #endif

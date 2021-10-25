@@ -6,40 +6,11 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 01:25:34 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/25 02:01:13 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/25 20:21:59 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-// static void	organize_b(t_stacks *s)
-// {
-// 	int	pos;
-// 	int	*diff;
-// 	int	aux;
-
-// 	pos = 0;
-// 	diff = ft_calloc(2, sizeof(int));
-// 	while (pos < find_relative_size(s->stack_b, s->size))
-// 	{
-// 		aux = ft_atoi(s->stack_b[pos]) - ft_atoi(s->stack_a[0]);
-// 		if (aux < 0)
-// 			aux *= -1;
-// 		if (diff[0] == 0 || aux < diff[0])
-// 		{
-// 			diff[0] = aux;
-// 			diff[1] = pos;
-// 		}
-// 		pos++;
-// 	}
-// 	if (ft_atoi(s->stack_b[diff[1]]) - ft_atoi(s->stack_a[0]) < 0)
-// 		to_top(s->stack_b, s, diff[1], 'b');
-// 	else
-// 		to_bottom(s->stack_b, s, diff[1], 'b');
-// 	action_pb(s);
-// 	to_bottom(s->stack_b, s,
-// 		find_smaller_index(s->stack_b, s->size), 'b');
-// }
 
 static void	to_a(t_stacks *s, int chunk, int x)
 {
@@ -90,12 +61,6 @@ static void	send_best_to_b(int *tb, t_stacks *s, int chunk, int x)
 	}
 	else
 		action_pb(s);
-	// if (find_relative_size(s->stack_b, s->size) > 1)
-	// 	organize_b(s);
-	// else
-	// 	action_pb(s);
-	// chunk += x;
-	// chunk -= x;
 	free_stack(&f);
 }
 

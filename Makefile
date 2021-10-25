@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/25 00:08:37 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/25 19:47:47 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC = $(SRC_DIR)/actions.c \
 		$(SRC_DIR)/fake_radix_sort.c \
 		$(SRC_DIR)/find_services.c \
 		$(SRC_DIR)/insert_sort.c \
+		$(SRC_DIR)/moves_service.c \
 		$(SRC_DIR)/normalize.c \
 		$(SRC_DIR)/other_services.c \
 		$(SRC_DIR)/push_swap.c \
