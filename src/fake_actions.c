@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 23:17:45 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/24 20:02:19 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/25 01:24:14 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	fake_action_pb(t_stacks *s)
 {
 	char	*aux;
 	int		i;
+	int		size;
 
-	i = find_relative_size(s->stack_b, s->size) - 1;
+	i = find_relative_size(s->stack_b, s->size);
 	aux = s->stack_a[0];
 	while (i > 0)
 	{
@@ -26,9 +27,11 @@ int	fake_action_pb(t_stacks *s)
 	}
 	s->stack_b[0] = aux;
 	i = 0;
-	while (i < find_relative_size(s->stack_a, s->size) - 1)
+	size = find_relative_size(s->stack_a, s->size);
+	while (i < size)
 	{
-		s->stack_a[i] = s->stack_a[i + 1];
+		if (i + 1 < size)
+			s->stack_a[i] = s->stack_a[i + 1];
 		i++;
 	}
 	s->stack_a[find_relative_size(s->stack_a, s->size) - 1] = NULL;
@@ -39,8 +42,9 @@ int	fake_action_pa(t_stacks *s)
 {
 	char	*aux;
 	int		i;
+	int		size;
 
-	i = find_relative_size(s->stack_a, s->size) - 1;
+	i = find_relative_size(s->stack_a, s->size);
 	aux = s->stack_b[0];
 	while (i > 0)
 	{
@@ -49,9 +53,11 @@ int	fake_action_pa(t_stacks *s)
 	}
 	s->stack_a[0] = aux;
 	i = 0;
-	while (i < find_relative_size(s->stack_b, s->size) - 1)
+	size = find_relative_size(s->stack_b, s->size);
+	while (i < size)
 	{
-		s->stack_b[i] = s->stack_b[i + 1];
+		if (i + 1 < size)
+			s->stack_b[i] = s->stack_b[i + 1];
 		i++;
 	}
 	s->stack_b[find_relative_size(s->stack_b, s->size) - 1] = NULL;

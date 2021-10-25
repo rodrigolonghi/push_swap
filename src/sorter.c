@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 00:50:01 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/24 18:54:09 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/25 02:29:12 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	case_five(t_stacks *s)
 				temp = s->stack_a[x];
 			x++;
 		}
-		to_top(s->stack_a, 5 - y,
+		to_top(s->stack_a, s,
 			find_index(s->stack_a, 5 - y, ft_atoi(temp)), 'a');
 		action_pb(s);
 		y++;
 	}
 	if (check_is_sorted(s) == 0)
-		case_three(s->stack_a, 'a');
+		case_three(s->stack_a, 'a', s);
 	action_pa(s);
 	action_pa(s);
 }
@@ -57,59 +57,68 @@ void	case_four(t_stacks *s)
 				temp = s->stack_a[x];
 			x++;
 		}
-		to_top(s->stack_a, 4 - y,
+		to_top(s->stack_a, s,
 			find_index(s->stack_a, 4 - y, ft_atoi(temp)), 'a');
 		action_pb(s);
 		y++;
 	}
-	case_two(s->stack_a, 'a');
+	case_two(s->stack_a, 'a', s);
 	if (compare(s->stack_b[0], s->stack_b[1]) == -1)
-		action_sx(s->stack_b, NULL, 'b');
+		action_sx(s->stack_b, NULL, 'b', s);
 	action_pa(s);
 	action_pa(s);
 }
 
-void	case_three(char **stack, char c)
+void	case_three(char **stack, char c, t_stacks *s)
 {
 	if (compare(stack[2], stack[1]) == 1
 		&& compare(stack[2], stack[0]) == 1)
-		action_sx(stack, NULL, c);
+		action_sx(stack, NULL, c, s);
 	else if (compare(stack[2], stack[1]) == -1
 		&& compare(stack[2], stack[0]) == -1)
 	{
 		if (compare(stack[1], stack[0]) == -1)
-			action_sx(stack, NULL, c);
-		action_rrx(stack, NULL, 3, c);
+			action_sx(stack, NULL, c, s);
+		action_rrx(stack, NULL, s, c);
 	}
 	else
 	{
 		if (compare(stack[1], stack[0]) == 1)
-			action_sx(stack, NULL, c);
-		action_rx(stack, NULL, 3, c);
+			action_sx(stack, NULL, c, s);
+		action_rx(stack, NULL, s, c);
 	}
 }
 
-void	case_two(char **stack, char c)
+void	case_two(char **stack, char c, t_stacks *s)
 {
 	if (compare(stack[0], stack[1]) == 1)
-		action_sx(stack, NULL, c);
+		action_sx(stack, NULL, c, s);
 }
 
 void	sorter(t_stacks *s)
 {
+	int	sorter_option;
+
 	indexing(s);
+	if (s->size <= 5)
+		s->moves_list = ft_calloc(s->moves, sizeof(char *));
 	if (s->size == 2)
-		case_two(s->stack_a, 'a');
+		case_two(s->stack_a, 'a', s);
 	else if (s->size == 3)
-		case_three(s->stack_a, 'a');
+		case_three(s->stack_a, 'a', s);
 	else if (s->size == 4)
 		case_four(s);
 	else if (s->size == 5)
 		case_five(s);
 	else
-		custom_sort(s);
-	// else if (simulate(s) == 2)
-	// 	insert_sort(s);
-	// else
-	// 	radix_sort(s);
+	{
+		sorter_option = simulate(s);
+		s->moves_list = ft_calloc(s->moves + 1, sizeof(char *));
+		if (sorter_option == 1)
+			insert_sort(s);
+		else if (sorter_option == 2)
+			radix_sort(s);
+		else
+			custom_sort(s);
+	}
 }

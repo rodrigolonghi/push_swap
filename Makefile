@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/24 19:59:08 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/25 00:08:37 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = $(SRC_DIR)/actions.c \
 		$(SRC_DIR)/checkers.c \
 		$(SRC_DIR)/custom_sort.c \
 		$(SRC_DIR)/fake_actions.c \
+		$(SRC_DIR)/fake_back_to_a.c \
 		$(SRC_DIR)/fake_custom_sort.c \
 		$(SRC_DIR)/fake_insert_sort.c \
 		$(SRC_DIR)/fake_radix_sort.c \

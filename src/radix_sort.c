@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 18:54:36 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/24 18:53:50 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/25 01:06:11 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	radix_sort(t_stacks *s)
 				moved++;
 			}
 			else
-				action_rx(s->stack_a, NULL, s->size - moved, 'a');
+				action_rx(s->stack_a, NULL, s, 'a');
 			x++;
 		}
 		while (moved-- > 0)

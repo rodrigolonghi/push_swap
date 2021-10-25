@@ -6,11 +6,27 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:48:56 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/24 20:00:50 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/24 21:54:17 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	find_smaller_index(char **stack, int size)
+{
+	int	pos;
+	int	smaller;
+
+	pos = 0;
+	smaller = 0;
+	while (pos < find_relative_size(stack, size))
+	{
+		if (compare(stack[pos], stack[smaller]) == -1)
+			smaller = pos;
+		pos++;
+	}
+	return (smaller);
+}
 
 void	find_smaller_and_bigger(t_stacks *s, int *sb)
 {
@@ -34,7 +50,7 @@ int	find_index(char **stack, int size, int nbr)
 	int	x;
 
 	x = 0;
-	while (x < size)
+	while (x < size && stack[x])
 	{
 		if (ft_strncmp(stack[x], "ok", ft_strlen(stack[x])) != 0
 			&& ft_atoi(stack[x]) == nbr)

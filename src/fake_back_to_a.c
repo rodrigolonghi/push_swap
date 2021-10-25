@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   back_to_a.c                                        :+:      :+:    :+:   */
+/*   fake_back_to_a.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 16:09:49 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/25 01:12:08 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/10/25 00:09:20 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/10/25 00:37:23 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	smart_back(t_stacks *s, t_stacks *f, int *sb)
+static int	smart_back(t_stacks *s, t_stacks *f, int *sb, int *moves)
 {
 	int	on_top;
 
@@ -21,20 +21,20 @@ static int	smart_back(t_stacks *s, t_stacks *f, int *sb)
 	if (fake_to_top(f->stack_b, f->size, sb[0])
 		< fake_to_top(f->stack_b, f->size, sb[1]))
 	{
-		to_top(s->stack_b, s, sb[0], 'b');
-		action_pa(s);
-		action_rx(s->stack_a, NULL, s, 'a');
+		moves[0] += fake_to_top(s->stack_b, s->size, sb[0]);
+		moves[0] += fake_action_pa(s);
+		moves[0] += fake_action_rx(s->stack_a, NULL, s->size);
 	}
 	else
 	{
-		to_top(s->stack_b, s, sb[1], 'b');
-		action_pa(s);
+		moves[0] += fake_to_top(s->stack_b, s->size, sb[1]);
+		moves[0] += fake_action_pa(s);
 		on_top++;
 	}
 	return (on_top);
 }
 
-void	back_to_a(t_stacks *s, t_stacks *f)
+void	fake_back_to_a(t_stacks *s, t_stacks *f, int *moves)
 {
 	int	*sb;
 	int	size_b;
@@ -49,15 +49,15 @@ void	back_to_a(t_stacks *s, t_stacks *f)
 	{
 		duplicate_stack(f, s);
 		if (size_b - x > 1)
-			on_top += smart_back(s, f, sb);
+			on_top += smart_back(s, f, sb, moves);
 		else
-			action_pa(s);
+			moves[0] += fake_action_pa(s);
 		x++;
 		free_stack(f);
 	}
 	while (on_top >= 0)
 	{
-		action_rx(s->stack_a, NULL, s, 'a');
+		moves[0] += fake_action_rx(s->stack_a, NULL, s->size);
 		on_top--;
 	}
 }

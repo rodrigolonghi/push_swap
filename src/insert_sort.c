@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 01:47:04 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/10 21:35:03 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/25 01:32:22 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	insert_sort(t_stacks *s)
 				y = x;
 			x++;
 		}
-		to_top(s->stack_a, s->size - i, y, 'a');
+		to_top(s->stack_a, s, y, 'a');
 		action_pb(s);
 		i++;
 	}

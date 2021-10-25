@@ -6,11 +6,18 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:32 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/24 20:01:46 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/25 01:55:41 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	throw_error(t_stacks *s)
+{
+	ft_putendl_fd("Error", 2);
+	free_stack(s);
+	exit(1);
+}
 
 void	create_args(int argc, char **argv, t_stacks *s)
 {
@@ -69,7 +76,11 @@ int	main(int argc, char **argv)
 			s.stack_b = ft_calloc(s.size + 1, sizeof(char *));
 			create_stacks(&s);
 			if (check_is_sorted(&s) == 0)
+			{
+				s.moves = 15;
 				sorter(&s);
+				put_moves(&s);
+			}
 		}
 		else
 			throw_error(&s);
