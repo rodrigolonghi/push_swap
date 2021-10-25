@@ -6,40 +6,11 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 20:14:14 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/25 01:19:11 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/25 20:27:03 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-static int	organize_b(t_stacks *s)
-{
-	int	*diff;
-	int	*aux;
-
-	aux = ft_calloc(3, sizeof(int));
-	diff = ft_calloc(2, sizeof(int));
-	while (aux[0] < find_relative_size(s->stack_b, s->size))
-	{
-		aux[1] = ft_atoi(s->stack_b[aux[0]]) - ft_atoi(s->stack_a[0]);
-		if (aux[1] < 0)
-			aux[1] *= -1;
-		if (diff[0] == 0 || aux[1] < diff[0])
-		{
-			diff[0] = aux[1];
-			diff[1] = aux[0];
-		}
-		aux[0]++;
-	}
-	if (ft_atoi(s->stack_b[diff[1]]) - ft_atoi(s->stack_a[0]) < 0)
-		aux[2] += fake_to_top(s->stack_b, s->size, diff[1]);
-	else
-		aux[2] += fake_to_bottom(s->stack_b, s->size, diff[1]);
-	aux[2] += fake_action_pb(s);
-	aux[2] += fake_to_bottom(s->stack_b, s->size,
-			find_smaller_index(s->stack_b, s->size));
-	return (aux[2]);
-}
 
 static void	to_a(t_stacks *s, int chunk, int x, int *moves)
 {
@@ -79,25 +50,19 @@ static int	send_best_to_b(int *tb, t_stacks *s, int chunk, int x)
 		moves += fake_to_top(s->stack_a, s->size, tb[0]);
 	else
 		moves += fake_to_top(s->stack_a, s->size, tb[1]);
-	// if (find_relative_size(s->stack_b, s->size) > 0)
-	// {
-	// 	if (ft_atoi(s->stack_a[0]) > ft_to_binary((s->size / x
-	// 				* (chunk + 1)) / 2))
-	// 		moves += fake_action_pb(s);
-	// 	else
-	// 	{
-	// 		moves += fake_action_pb(s);
-	// 		moves += fake_action_rx(s->stack_b, NULL, s->size);
-	// 	}
-	// }
-	// else
-	// 	moves += fake_action_pb(s);
-	if (find_relative_size(s->stack_b, s->size) > 1)
-		moves += organize_b(s);
+	if (find_relative_size(s->stack_b, s->size) > 0)
+	{
+		if (ft_atoi(s->stack_a[0]) > ft_to_binary((s->size / x
+					* (chunk + 1)) / 2))
+			moves += fake_action_pb(s);
+		else
+		{
+			moves += fake_action_pb(s);
+			moves += fake_action_rx(s->stack_b, NULL, s->size);
+		}
+	}
 	else
 		moves += fake_action_pb(s);
-	chunk += x;
-	chunk -= x;
 	free_stack(&f);
 	return (moves);
 }
