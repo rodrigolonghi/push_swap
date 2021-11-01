@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 23:33:32 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/25 01:55:41 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/26 20:59:15 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	create_args(int argc, char **argv, t_stacks *s)
 			s->args[x] = argv[x + 1];
 			x++;
 		}
+	}
+	if (s->size <= 5)
+	{
+		s->moves = 15;
+		s->moves_list = ft_calloc(s->moves, sizeof(char *));
 	}
 }
 
@@ -77,7 +82,6 @@ int	main(int argc, char **argv)
 			create_stacks(&s);
 			if (check_is_sorted(&s) == 0)
 			{
-				s.moves = 15;
 				sorter(&s);
 				put_moves(&s);
 			}

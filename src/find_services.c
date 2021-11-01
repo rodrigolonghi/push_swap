@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:48:56 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/24 21:54:17 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/31 19:49:26 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,13 @@ void	find_top_and_bottom(int *tb, t_stacks *s, int start, int limit)
 	while (x < s->size && (tb[0] == -1 || tb[1] == -1))
 	{
 		if (s->stack_a[x] != NULL
-			&& (ft_atoi(s->stack_a[x]) >= ft_to_binary(start)
-				&& ft_atoi(s->stack_a[x]) < ft_to_binary(limit))
+			&& (ft_atoi(s->stack_a[x]) >= start
+				&& ft_atoi(s->stack_a[x]) < limit)
 			&& tb[0] == -1)
 			tb[0] = x;
 		if (s->stack_a[s->size - 1 - x] != NULL
-			&& (ft_atoi(s->stack_a[s->size - 1 - x]) >= ft_to_binary(start)
-				&& ft_atoi(s->stack_a[s->size - 1 - x])
-				< ft_to_binary(limit))
+			&& (ft_atoi(s->stack_a[s->size - 1 - x]) >= start
+				&& ft_atoi(s->stack_a[s->size - 1 - x]) < limit)
 			&& tb[1] == -1)
 			tb[1] = s->size - 1 - x;
 		x++;

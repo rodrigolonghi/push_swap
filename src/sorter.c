@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 00:50:01 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/25 20:26:05 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/10/31 20:00:47 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,9 @@ void	case_two(char **stack, char c, t_stacks *s)
 
 void	sorter(t_stacks *s)
 {
-	int	sorter_option;
+	int	aux;
 
 	indexing(s);
-	if (s->size <= 5)
-		s->moves_list = ft_calloc(s->moves, sizeof(char *));
 	if (s->size == 2)
 		case_two(s->stack_a, 'a', s);
 	else if (s->size == 3)
@@ -112,13 +110,11 @@ void	sorter(t_stacks *s)
 		case_five(s);
 	else
 	{
-		sorter_option = simulate(s);
-		s->moves_list = ft_calloc(s->moves + 1, sizeof(char *));
-		if (sorter_option == 1)
-			insert_sort(s);
-		else if (sorter_option == 2)
-			radix_sort(s);
+		if (s->size <= 100)
+			aux = 4;
 		else
-			custom_sort(s);
+			aux = 8;
+		simulate(s, aux);
+		quick_sort(s, aux);
 	}
 }

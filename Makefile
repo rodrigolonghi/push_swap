@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 23:27:22 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/10/25 19:47:47 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/10/31 20:01:56 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,21 +23,15 @@ LIBFT = libft/libft.a
 
 SRC_DIR = ./src
 SRC = $(SRC_DIR)/actions.c \
-		$(SRC_DIR)/back_to_a.c \
 		$(SRC_DIR)/checkers.c \
-		$(SRC_DIR)/custom_sort.c \
 		$(SRC_DIR)/fake_actions.c \
-		$(SRC_DIR)/fake_back_to_a.c \
-		$(SRC_DIR)/fake_custom_sort.c \
-		$(SRC_DIR)/fake_insert_sort.c \
-		$(SRC_DIR)/fake_radix_sort.c \
+		$(SRC_DIR)/fake_quick_sort.c \
 		$(SRC_DIR)/find_services.c \
-		$(SRC_DIR)/insert_sort.c \
 		$(SRC_DIR)/moves_service.c \
 		$(SRC_DIR)/normalize.c \
 		$(SRC_DIR)/other_services.c \
 		$(SRC_DIR)/push_swap.c \
-		$(SRC_DIR)/radix_sort.c \
+		$(SRC_DIR)/quick_sort.c \
 		$(SRC_DIR)/simulate.c \
 		$(SRC_DIR)/sorter.c \
 		$(SRC_DIR)/stack_services.c
