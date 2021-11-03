@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 04:45:50 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/05/27 23:13:14 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/02 22:16:11 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_itoa(int n)
 		n /= 10;
 		i++;
 	}
-	str = (char *)malloc(ft_strlen(nb) + 1);
+	str = malloc((ft_strlen(nb) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	ft_itoa_part_2(str, nb);

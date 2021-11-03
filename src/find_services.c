@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:48:56 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/31 19:49:26 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/02 21:37:31 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ int	find_smaller_index(char **stack, int size)
 	int	smaller;
 
 	pos = 0;
-	smaller = 0;
-	while (pos < find_relative_size(stack, size))
+	smaller = -1;
+	while (pos < size)
 	{
-		if (compare(stack[pos], stack[smaller]) == -1)
+		if (ft_strncmp(stack[pos], "ok", ft_strlen(stack[pos])) != 0
+			&& smaller == -1)
+			smaller = pos;
+		if (smaller != -1 && ft_strncmp(stack[pos], "ok", ft_strlen(stack[pos]))
+			!= 0 && compare(stack[pos], stack[smaller]) == -1)
 			smaller = pos;
 		pos++;
 	}

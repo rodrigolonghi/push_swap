@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 21:34:03 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/31 19:07:47 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/02 21:29:15 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,17 @@ static void	arrange_stack(char **stack_a, char **stack_temp, int size)
 void	indexing(t_stacks *s)
 {
 	int		x;
-	int		y;
-	char	*aux;
+	int		aux;
 	char	**stack_temp;
 
-	y = 0;
+	x = 0;
 	stack_temp = ft_calloc(s->size, sizeof(char *));
-	while (y < s->size)
+	while (x < s->size)
 	{
-		x = 0;
-		aux = "2147483647";
-		while (x < s->size)
-		{
-			if (compare(s->stack_a[x], aux) == -1 && ft_strncmp(s->stack_a[x],
-					"ok", ft_strlen(s->stack_a[x])) != 0)
-				aux = s->stack_a[x];
-			x++;
-		}
-		stack_temp[find_index(s->stack_a, s->size, ft_atoi(aux))] = ft_itoa(y);
-		s->stack_a[find_index(s->stack_a, s->size, ft_atoi(aux))] = "ok";
-		y++;
+		aux = find_smaller_index(s->stack_a, s->size);
+		stack_temp[aux] = ft_itoa(x);
+		s->stack_a[aux] = "ok";
+		x++;
 	}
 	arrange_stack(s->stack_a, stack_temp, s->size);
 	free(stack_temp);
