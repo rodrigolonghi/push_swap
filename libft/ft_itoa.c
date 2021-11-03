@@ -6,11 +6,13 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 04:45:50 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/02 22:16:11 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/02 22:42:55 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _CRTDBG_MAP_ALLOC
 #include "libft.h"
+#include <crtdbg.h>
 
 static void	ft_itoa_part_2(char *str, char nb[])
 {
@@ -59,5 +61,6 @@ char	*ft_itoa(int n)
 	if (!str)
 		return (NULL);
 	ft_itoa_part_2(str, nb);
+	_CrtDumpMemoryLeaks();
 	return (str);
 }

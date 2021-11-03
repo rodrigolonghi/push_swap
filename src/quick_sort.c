@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 22:44:39 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/01 04:59:44 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/02 22:32:43 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@ static void	change_position_data(int *position, int x, t_stacks *s)
 
 static void	to_a(int *aux, t_stacks *s)
 {
-	t_stacks	*f;
+	t_stacks	f;
 
 	aux[0] = find_index(s->stack_b, s->size, aux[2] - 1);
 	aux[1] = find_index(s->stack_b, s->size, aux[2] - 2);
-	f = malloc(sizeof(t_stacks));
-	duplicate_stack(f, s);
-	if (aux[2] > 1 && fake_to_top(f->stack_b, f->size, aux[0])
-		< fake_to_top(f->stack_b, f->size, aux[1]))
+	duplicate_stack(&f, s);
+	if (aux[2] > 1 && fake_to_top(f.stack_b, f.size, aux[0])
+		< fake_to_top(f.stack_b, f.size, aux[1]))
 	{
 		to_top(s->stack_b, s, aux[0], 'b');
 		action_pa(s);
@@ -44,18 +43,17 @@ static void	to_a(int *aux, t_stacks *s)
 	}
 	else if (aux[2] == 1)
 		action_pa(s);
-	free_stack(f);
+	free_stack(&f);
 }
 
 static void	to_b(t_stacks *s, int *aux, int *position)
 {
-	t_stacks	*f;
+	t_stacks	f;
 
-	f = malloc(sizeof(t_stacks));
-	duplicate_stack(f, s);
+	duplicate_stack(&f, s);
 	find_top_and_bottom(aux, s, position[0], position[2]);
-	if (fake_to_top(f->stack_a, f->size, aux[0])
-		< fake_to_top(f->stack_a, f->size, aux[1]))
+	if (fake_to_top(f.stack_a, f.size, aux[0])
+		< fake_to_top(f.stack_a, f.size, aux[1]))
 		to_top(s->stack_a, s, aux[0], 'a');
 	else
 		to_top(s->stack_a, s, aux[1], 'a');
@@ -63,7 +61,7 @@ static void	to_b(t_stacks *s, int *aux, int *position)
 	if (find_relative_size(s->stack_b, s->size) > 1
 		&& ft_atoi(s->stack_b[0]) < position[1])
 		action_rx(s->stack_b, NULL, s, 'b');
-	free_stack(f);
+	free_stack(&f);
 }
 
 void	quick_sort(t_stacks *s, int x)

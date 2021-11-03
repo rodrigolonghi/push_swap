@@ -6,11 +6,11 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 21:57:45 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/02 21:58:58 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/02 22:43:22 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft/libft.h"
 
 int	main(void)
 {
