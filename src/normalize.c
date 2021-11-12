@@ -6,48 +6,32 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 21:34:03 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/31 19:07:47 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/12 18:13:09 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	arrange_stack(char **stack_a, char **stack_temp, int size)
+void	normalize(t_stacks *s)
 {
 	int	x;
+	int	aux;
 
-	x = 0;
-	while (x < size)
+	aux = find_bigger_index(s->stack_a, s->size);
+	s->stack_b[aux] = s->size;
+	x = 1;
+	while (x < s->size)
 	{
-		stack_a[x] = stack_temp[x];
+		aux = find_smaller_index(s->stack_a, s->size);
+		s->stack_b[aux] = x;
+		s->stack_a[aux] = 2147483647;
 		x++;
 	}
-}
-
-void	indexing(t_stacks *s)
-{
-	int		x;
-	int		y;
-	char	*aux;
-	char	**stack_temp;
-
-	y = 0;
-	stack_temp = ft_calloc(s->size, sizeof(char *));
-	while (y < s->size)
+	x = 0;
+	while (x < s->size)
 	{
-		x = 0;
-		aux = "2147483647";
-		while (x < s->size)
-		{
-			if (compare(s->stack_a[x], aux) == -1 && ft_strncmp(s->stack_a[x],
-					"ok", ft_strlen(s->stack_a[x])) != 0)
-				aux = s->stack_a[x];
-			x++;
-		}
-		stack_temp[find_index(s->stack_a, s->size, ft_atoi(aux))] = ft_itoa(y);
-		s->stack_a[find_index(s->stack_a, s->size, ft_atoi(aux))] = "ok";
-		y++;
+		s->stack_a[x] = s->stack_b[x];
+		s->stack_b[x] = 0;
+		x++;
 	}
-	arrange_stack(s->stack_a, stack_temp, s->size);
-	free(stack_temp);
 }

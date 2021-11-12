@@ -6,11 +6,11 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:14:50 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/06/01 03:16:58 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/09 01:23:39 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 static int	ft_find_start(char const *s1, char *set)
 {

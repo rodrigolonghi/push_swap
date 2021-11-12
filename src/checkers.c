@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 20:29:36 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/24 19:12:53 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/08 22:24:29 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/12 18:11:41 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@ int	check_is_sorted(t_stacks *s)
 {
 	int	x;
 	int	y;
+	int	aux;
+	int	size;
 
 	x = 0;
-	while (x < s->size - 1 && s->stack_a[x] != NULL)
+	size = get_relative_size(s->stack_a, s->size);
+	while (x < size)
 	{
+		aux = s->stack_a[x];
 		y = x + 1;
-		while (y < s->size && s->stack_a[y] != NULL)
+		while (y < size)
 		{
-			if (ft_atoi(s->stack_a[x]) > ft_atoi(s->stack_a[y]))
+			if (aux > s->stack_a[y])
 				return (0);
 			y++;
 		}
@@ -32,74 +36,68 @@ int	check_is_sorted(t_stacks *s)
 	return (1);
 }
 
-int	check_nbr_limit(t_stacks *s)
-{
-	int		x;
-
-	x = 0;
-	while (x < s->size)
-	{
-		if (ft_strlen(s->args[x]) == 10)
-		{
-			if (ft_memcmp("2147483647", s->args[x], 10) < 0)
-				return (0);
-		}
-		else if (ft_strlen(s->args[x]) == 11)
-		{
-			if (ft_memcmp("-2147483648", s->args[x], 11) < 0)
-				return (0);
-		}
-		else if (ft_strlen(s->args[x]) > 11)
-			return (0);
-		x++;
-	}
-	return (1);
-}
-
-int	check_duplicates(t_stacks *s)
+static int	check_duplicates(int n_args, char **args, int argc)
 {
 	int	x;
 	int	y;
 	int	aux;
 
 	x = 0;
-	while (x < s->size)
+	while (x < n_args)
 	{
-		aux = ft_atoi(s->args[x]);
+		aux = ft_atoi(args[x]);
 		y = x + 1;
-		while (y < s->size)
+		while (y < n_args)
 		{
-			if (ft_atoi(s->args[y]) == aux)
+			if (ft_atoi(args[y]) == aux)
+			{
+				if (argc == 2)
+					free_args(n_args, args, argc);
 				return (0);
+			}
 			y++;
 		}
 		x++;
 	}
-	return (check_nbr_limit(s));
+	return (1);
 }
 
-int	check_args(t_stacks *s)
+static int	check_nbr_limit(char *arg)
+{
+	if (ft_strlen(arg) == 10 && ft_memcmp("2147483647", arg, 10) < 0)
+		return (0);
+	else if (ft_strlen(arg) == 11 && ft_memcmp("-2147483648", arg, 11) < 0)
+		return (0);
+	else if (ft_strlen(arg) > 11)
+		return (0);
+	return (1);
+}
+
+int	check_args(int n_args, char **args, int argc)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	while (x < s->size)
+	while (x < n_args)
 	{
+		verify_arg(args[x]);
+		if (!check_nbr_limit(args[x]))
+			return (0);
 		y = 0;
-		while (s->args[x][y])
+		while (args[x][y])
 		{
-			if (!ft_isdigit(s->args[x][y])
-				&& s->args[x][y] != '-' && s->args[x][y] != '+')
+			if (!ft_isdigit(args[x][y])
+				&& args[x][y] != '-' && args[x][y] != '+')
 				return (0);
-			if (!ft_isdigit(s->args[x][y]) && y != 0)
+			if (!ft_isdigit(args[x][y]) && y != 0)
 				return (0);
-			if (ft_memcmp("-", s->args[x], ft_strlen(s->args[x])) == 0
-				|| ft_memcmp("+", s->args[x], ft_strlen(s->args[x])) == 0)
+			if (ft_memcmp("-", args[x], ft_strlen(args[x])) == 0
+				|| ft_memcmp("+", args[x], ft_strlen(args[x])) == 0)
 				return (0);
 			y++;
 		}
 		x++;
 	}
-	return (check_duplicates(s));
+	return (check_duplicates(n_args, args, argc));
 }

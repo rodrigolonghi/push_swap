@@ -5,67 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 23:33:29 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/31 19:54:18 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/05 21:44:06 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/12 19:24:20 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "../libft/libft.h"
-# include <stdio.h>
+# include "../libft/includes/libft.h"
 
 typedef struct s_stacks
 {
-	int		size;
-	int		moves;
-	char	**args;
-	char	**stack_a;
-	char	**stack_b;
-	char	**moves_list;
-}				t_stacks;
+	int	moves;
+	int	*moves_list;
+	int	size;
+	int	*stack_a;
+	int	*stack_b;
+}	t_stacks;
 
-int		check_args(t_stacks *s);
-int		check_duplicates(t_stacks *s);
-int		check_is_sorted(t_stacks *s);
-int		check_nbr_limit(t_stacks *s);
-int		compare(char *a, char *b);
-int		find_index(char **stack, int size, int nbr);
-int		get_args_number(char **argv, int argc);
+void	action_sx(int *stack, int *optional, t_stacks *s, char c);
+void	action_rx(int *stack, int *optional, t_stacks *s, char c);
+void	action_rrx(int *stack, int *optional, t_stacks *s, char c);
 void	action_pa(t_stacks *s);
 void	action_pb(t_stacks *s);
-void	action_rx(char **stack, char **stackOptional, t_stacks *s, char c);
-void	action_rrx(char **stack, char **stackOptional, t_stacks *s, char c);
-void	action_sx(char **stack, char **stackOptional, char c, t_stacks *s);
-void	case_five(t_stacks *s);
-void	case_four(t_stacks *s);
-void	case_three(char **stack, char c, t_stacks *s);
-void	case_two(char **stack, char c, t_stacks *s);
-void	create_args(int argc, char **argv, t_stacks *s);
-void	create_stacks(t_stacks *s);
+int		check_args(int n_args, char **args, int argc);
+int		check_is_sorted(t_stacks *s);
+void	create_stack(int n_args, char **args, t_stacks *s, int argc);
 void	free_stack(t_stacks *s);
-void	indexing(t_stacks *s);
+int		get_relative_size(int *stack, int original_size);
+void	save_next_move(t_stacks *s, char *move);
 void	sorter(t_stacks *s);
-void	to_top(char **stack, t_stacks *s, int pos, char c);
-void	throw_error(t_stacks *s);
-int		fake_action_sx(char **stack, char **stackOptional);
-int		fake_action_rx(char **stack, char **stackOptional, int size);
-int		fake_action_rrx(char **stack, char **stackOptional, int size);
-int		fake_action_pa(t_stacks *s);
-int		fake_action_pb(t_stacks *s);
-void	duplicate_stack(t_stacks *f, t_stacks *s);
-void	simulate(t_stacks *s, int aux);
-int		fake_to_top(char **stack, int size, int pos);
-int		find_relative_size(char **stack, int original_size);
-void	find_smaller_and_bigger(t_stacks *s, int *sb);
-void	find_top_and_bottom(int *tb, t_stacks *s, int start, int limit);
-void	to_bottom(char **stack, t_stacks *s, int pos, char c);
-int		fake_to_bottom(char **stack, int size, int pos);
-int		find_smaller_index(char **stack, int size);
-void	write_next_move(t_stacks *s, char *move);
+void	throw_error(void);
 void	put_moves(t_stacks *s);
-void	clean_moves(t_stacks *s, char **action, int l);
-void	quick_sort(t_stacks *s, int x);
-void	fake_quick_sort(t_stacks *s, int x, int *moves);
+void	verify_arg(char *arg);
+int		find_bigger_index(int *stack, int size);
+int		find_index(int *stack, int size, int value);
+void	to_top(int *stack, t_stacks *s, int pos, char c);
+int		find_smaller_index(int *stack, int size);
+void	normalize(t_stacks *s);
+void	free_args(int n_args, char **args, int argc);
+void	duplicate_stack(t_stacks *f, t_stacks *s);
+void	find_top_and_bottom(int *tb, t_stacks *s, int start, int limit);
+int		fake_action_sx(int *stack, int *optional, t_stacks *s);
+int		fake_action_rx(int *stack, int *optional, t_stacks *s);
+int		fake_action_rrx(int *stack, int *optional, t_stacks *s);
+int		fake_action_pb(t_stacks *s);
+int		fake_action_pa(t_stacks *s);
+int		fake_to_top(int *stack, t_stacks *s, int pos);
+void	quick_sort(t_stacks *s, int pivot);
 
 #endif

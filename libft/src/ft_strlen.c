@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 20:05:15 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/06 00:40:07 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/05 21:37:53 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/05 21:39:07 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/libft.h"
 
-int	main(int argc, char **argv)
+int	ft_strlen(char *str)
 {
-	// int		i;
-	// char	**stack_a;
-	// char	**stack_b;
+	int	size;
 
-	if (argc == 1 || argv[0] == NULL)
-		throw_error("Invalid number of arguments!\n");
-	else
-	{
-		printf("%d\n", argc);
-	}
-	return (0);
+	size = 0;
+	while (str[size])
+		size++;
+	return (size);
 }

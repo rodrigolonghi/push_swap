@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_haszero.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/11 05:11:14 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/09/11 05:17:25 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/05 21:36:56 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/05 21:41:20 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
-int	ft_haszero(int *s, int size)
+void	ft_putstr_fd(char *str, int fd)
 {
-	while (size > 0)
+	int	pos;
+	int	size;
+
+	pos = 0;
+	size = ft_strlen(str);
+	while (pos < size)
 	{
-		if (s[size - 1] == 0)
-			return (1);
-		size--;
+		ft_putchar_fd(str[pos], fd);
+		pos++;
 	}
-	return (0);
 }

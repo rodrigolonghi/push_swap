@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulate.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/10 23:50:37 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/01 04:38:13 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/05 21:53:10 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/05 21:53:30 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/libft.h"
 
-void	simulate(t_stacks *s, int aux)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int			*quick_moves;
-	t_stacks	f;
+	char	*obj;
 
-	quick_moves = ft_calloc(1, sizeof(int));
-	duplicate_stack(&f, s);
-	fake_quick_sort(&f, aux, quick_moves);
-	free_stack(&f);
-	s->moves = quick_moves[0];
-	s->moves_list = ft_calloc(s->moves + 1, sizeof(char *));
-	free(quick_moves);
+	obj = (char *)malloc(count * size);
+	if (!obj)
+		return (NULL);
+	ft_bzero(obj, count * size);
+	return ((void *)obj);
 }

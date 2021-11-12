@@ -5,60 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/24 19:48:56 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/31 19:49:26 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/10 22:18:33 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/12 19:21:53 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int	find_smaller_index(char **stack, int size)
-{
-	int	pos;
-	int	smaller;
-
-	pos = 0;
-	smaller = 0;
-	while (pos < find_relative_size(stack, size))
-	{
-		if (compare(stack[pos], stack[smaller]) == -1)
-			smaller = pos;
-		pos++;
-	}
-	return (smaller);
-}
-
-void	find_smaller_and_bigger(t_stacks *s, int *sb)
-{
-	int	x;
-
-	sb[0] = 0;
-	sb[1] = 0;
-	x = 1;
-	while (x < s->size && s->stack_b[x] != NULL)
-	{
-		if (compare(s->stack_b[x], s->stack_b[sb[0]]) == -1)
-			sb[0] = x;
-		if (compare(s->stack_b[x], s->stack_b[sb[1]]) == 1)
-			sb[1] = x;
-		x++;
-	}
-}
-
-int	find_index(char **stack, int size, int nbr)
-{
-	int	x;
-
-	x = 0;
-	while (x < size && stack[x])
-	{
-		if (ft_strncmp(stack[x], "ok", ft_strlen(stack[x])) != 0
-			&& ft_atoi(stack[x]) == nbr)
-			return (x);
-		x++;
-	}
-	return (-1);
-}
 
 void	find_top_and_bottom(int *tb, t_stacks *s, int start, int limit)
 {
@@ -69,30 +21,69 @@ void	find_top_and_bottom(int *tb, t_stacks *s, int start, int limit)
 	tb[1] = -1;
 	while (x < s->size && (tb[0] == -1 || tb[1] == -1))
 	{
-		if (s->stack_a[x] != NULL
-			&& (ft_atoi(s->stack_a[x]) >= start
-				&& ft_atoi(s->stack_a[x]) < limit)
-			&& tb[0] == -1)
+		if (s->stack_a[x] != 0 && s->stack_a[x] >= start
+			&& s->stack_a[x] < limit && tb[0] == -1)
 			tb[0] = x;
-		if (s->stack_a[s->size - 1 - x] != NULL
-			&& (ft_atoi(s->stack_a[s->size - 1 - x]) >= start
-				&& ft_atoi(s->stack_a[s->size - 1 - x]) < limit)
-			&& tb[1] == -1)
+		if (s->stack_a[s->size - 1 - x] != 0
+			&& s->stack_a[s->size - 1 - x] >= start
+			&& s->stack_a[s->size - 1 - x] < limit && tb[1] == -1)
 			tb[1] = s->size - 1 - x;
 		x++;
 	}
 }
 
-int	find_relative_size(char **stack, int original_size)
+int	find_index(int *stack, int size, int value)
 {
 	int	x;
 
 	x = 0;
-	while (x < original_size)
+	while (x < size)
 	{
-		if (stack[x] == NULL)
-			break ;
+		if (stack[x] == value)
+			return (x);
 		x++;
 	}
-	return (x);
+	return (-1);
+}
+
+int	find_smaller_index(int *stack, int size)
+{
+	int	x;
+	int	aux;
+
+	x = 0;
+	aux = 0;
+	while (x < size)
+	{
+		if (stack[x] < stack[aux])
+			aux = x;
+		x++;
+	}
+	return (aux);
+}
+
+int	find_bigger_index(int *stack, int size)
+{
+	int	x;
+	int	aux;
+
+	x = 0;
+	aux = 0;
+	while (x < size)
+	{
+		if (stack[x] > stack[aux])
+			aux = x;
+		x++;
+	}
+	return (aux);
+}
+
+int	get_relative_size(int *stack, int original_size)
+{
+	int	size;
+
+	size = 0;
+	while (size < original_size && stack[size] != 0)
+		size++;
+	return (size);
 }

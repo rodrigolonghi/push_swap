@@ -5,128 +5,118 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 16:13:42 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/25 01:45:06 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/09 17:19:15 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/10 00:32:17 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	action_pb(t_stacks *s)
-{
-	char	*aux;
-	int		i;
-	int		size;
-
-	i = find_relative_size(s->stack_b, s->size);
-	aux = s->stack_a[0];
-	while (i > 0)
-	{
-		s->stack_b[i] = s->stack_b[i - 1];
-		i--;
-	}
-	s->stack_b[0] = aux;
-	i = 0;
-	size = find_relative_size(s->stack_a, s->size);
-	while (i < size)
-	{
-		if (i + 1 < size)
-			s->stack_a[i] = s->stack_a[i + 1];
-		i++;
-	}
-	s->stack_a[find_relative_size(s->stack_a, s->size) - 1] = NULL;
-	write_next_move(s, "pb");
-}
-
 void	action_pa(t_stacks *s)
 {
-	char	*aux;
-	int		i;
-	int		size;
+	int	x;
+	int	aux;
 
-	i = find_relative_size(s->stack_a, s->size);
+	x = 0;
 	aux = s->stack_b[0];
-	while (i > 0)
+	while (x < get_relative_size(s->stack_b, s->size) - 1)
 	{
-		s->stack_a[i] = s->stack_a[i - 1];
-		i--;
+		s->stack_b[x] = s->stack_b[x + 1];
+		x++;
+	}
+	s->stack_b[x] = 0;
+	x = get_relative_size(s->stack_a, s->size);
+	while (x > 0)
+	{
+		s->stack_a[x] = s->stack_a[x - 1];
+		x--;
 	}
 	s->stack_a[0] = aux;
-	i = 0;
-	size = find_relative_size(s->stack_b, s->size);
-	while (i < size)
-	{
-		if (i + 1 < size)
-			s->stack_b[i] = s->stack_b[i + 1];
-		i++;
-	}
-	s->stack_b[find_relative_size(s->stack_b, s->size) - 1] = NULL;
-	write_next_move(s, "pa");
+	save_next_move(s, "pa");
 }
 
-void	action_rrx(char **stack, char **stackOptional, t_stacks *s, char c)
+void	action_pb(t_stacks *s)
 {
-	char	*aux;
-	int		i;
+	int	x;
+	int	aux;
 
-	aux = stack[find_relative_size(stack, s->size) - 1];
-	i = find_relative_size(stack, s->size) - 1;
-	while (i > 0)
+	x = 0;
+	aux = s->stack_a[0];
+	while (x < get_relative_size(s->stack_a, s->size) - 1)
 	{
-		stack[i] = stack[i - 1];
-		i--;
+		s->stack_a[x] = s->stack_a[x + 1];
+		x++;
 	}
-	stack[0] = aux;
-	if (stackOptional != NULL)
-		action_rrx(stackOptional, NULL, s, c);
+	s->stack_a[x] = 0;
+	x = get_relative_size(s->stack_b, s->size);
+	while (x > 0)
+	{
+		s->stack_b[x] = s->stack_b[x - 1];
+		x--;
+	}
+	s->stack_b[0] = aux;
+	save_next_move(s, "pb");
+}
+
+void	action_rrx(int *stack, int *optional, t_stacks *s, char c)
+{
+	int	x;
+	int	aux;
+
+	x = get_relative_size(stack, s->size) - 1;
+	aux = stack[x];
+	while (x > 0)
+	{
+		stack[x] = stack[x - 1];
+		x--;
+	}
+	stack[x] = aux;
+	if (optional != NULL)
+		action_rx(optional, NULL, s, 'x');
 	if (c == 'a')
-		write_next_move(s, "rra");
+		save_next_move(s, "rra");
 	else if (c == 'b')
-		write_next_move(s, "rrb");
-	else
-		write_next_move(s, "rrr");
+		save_next_move(s, "rrb");
+	else if (c == 's')
+		save_next_move(s, "rrr");
 }
 
-void	action_rx(char **stack, char **stackOptional, t_stacks *s, char c)
+void	action_rx(int *stack, int *optional, t_stacks *s, char c)
 {
-	char	*aux;
-	int		i;
+	int	x;
+	int	aux;
 
+	x = 0;
 	aux = stack[0];
-	i = 0;
-	while (i < find_relative_size(stack, s->size) - 1)
+	while (x < get_relative_size(stack, s->size) - 1)
 	{
-		stack[i] = stack[i + 1];
-		i++;
+		stack[x] = stack[x + 1];
+		x++;
 	}
-	stack[find_relative_size(stack, s->size) - 1] = aux;
-	if (stackOptional != NULL)
-		action_rx(stackOptional, NULL, s, c);
+	stack[x] = aux;
+	if (optional != NULL)
+		action_rx(optional, NULL, s, 'x');
 	if (c == 'a')
-		write_next_move(s, "ra");
+		save_next_move(s, "ra");
 	else if (c == 'b')
-		write_next_move(s, "rb");
-	else
-		write_next_move(s, "rr");
+		save_next_move(s, "rb");
+	else if (c == 's')
+		save_next_move(s, "rr");
 }
 
-void	action_sx(char **stack, char **stackOptional, char c, t_stacks *s)
+void	action_sx(int *stack, int *optional, t_stacks *s, char c)
 {
-	char	*aux;
+	int	aux;
 
 	aux = stack[0];
 	stack[0] = stack[1];
 	stack[1] = aux;
-	if (stackOptional != NULL)
-	{
-		aux = stackOptional[0];
-		stackOptional[0] = stackOptional[1];
-		stackOptional[1] = aux;
-	}
+	if (optional != NULL)
+		action_sx(optional, NULL, s, 'x');
 	if (c == 'a')
-		write_next_move(s, "sa");
+		save_next_move(s, "sa");
 	else if (c == 'b')
-		write_next_move(s, "sb");
-	else
-		write_next_move(s, "ss");
+		save_next_move(s, "sb");
+	else if (c == 's')
+		save_next_move(s, "ss");
 }

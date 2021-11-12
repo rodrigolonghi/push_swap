@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_replace.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 00:25:48 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/08 00:38:28 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/05/25 00:46:33 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/09 01:23:39 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
-void	ft_replace(void *content, int a, int b, int n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	size_t	pos;
 
-	i = 0;
-	while (i < n)
+	pos = 0;
+	while (pos < n)
 	{
-		if (((unsigned char *)content)[i] == (unsigned char)a)
-			((unsigned char *)content)[i] = (unsigned char)b;
-		i++;
+		if (((unsigned char *)s1)[pos] != ((unsigned char *)s2)[pos])
+			return (((unsigned char *)s1)[pos] - ((unsigned char *)s2)[pos]);
+		pos++;
 	}
+	return (0);
 }

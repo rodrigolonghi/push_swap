@@ -6,13 +6,11 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 00:17:29 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/05/28 05:51:14 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/09 01:23:55 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-#include "libft.h"
+#include "../includes/libft.h"
 
 static void	*ft_free_result(char **result)
 {

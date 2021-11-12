@@ -5,131 +5,112 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/10 23:17:45 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/10/25 01:24:14 by rfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/12 17:43:29 by rfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/12 17:53:05 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	fake_action_pb(t_stacks *s)
-{
-	char	*aux;
-	int		i;
-	int		size;
-
-	i = find_relative_size(s->stack_b, s->size);
-	aux = s->stack_a[0];
-	while (i > 0)
-	{
-		s->stack_b[i] = s->stack_b[i - 1];
-		i--;
-	}
-	s->stack_b[0] = aux;
-	i = 0;
-	size = find_relative_size(s->stack_a, s->size);
-	while (i < size)
-	{
-		if (i + 1 < size)
-			s->stack_a[i] = s->stack_a[i + 1];
-		i++;
-	}
-	s->stack_a[find_relative_size(s->stack_a, s->size) - 1] = NULL;
-	return (1);
-}
-
 int	fake_action_pa(t_stacks *s)
 {
-	char	*aux;
-	int		i;
-	int		size;
+	int	x;
+	int	aux;
 
-	i = find_relative_size(s->stack_a, s->size);
+	x = 0;
 	aux = s->stack_b[0];
-	while (i > 0)
+	while (x < get_relative_size(s->stack_b, s->size) - 1)
 	{
-		s->stack_a[i] = s->stack_a[i - 1];
-		i--;
+		s->stack_b[x] = s->stack_b[x + 1];
+		x++;
+	}
+	s->stack_b[x] = 0;
+	x = get_relative_size(s->stack_a, s->size);
+	while (x > 0)
+	{
+		s->stack_a[x] = s->stack_a[x - 1];
+		x--;
 	}
 	s->stack_a[0] = aux;
-	i = 0;
-	size = find_relative_size(s->stack_b, s->size);
-	while (i < size)
-	{
-		if (i + 1 < size)
-			s->stack_b[i] = s->stack_b[i + 1];
-		i++;
-	}
-	s->stack_b[find_relative_size(s->stack_b, s->size) - 1] = NULL;
 	return (1);
 }
 
-int	fake_action_rrx(char **stack, char **stackOptional, int size)
+int	fake_action_pb(t_stacks *s)
 {
-	char	*aux;
-	int		i;
+	int	x;
+	int	aux;
 
-	aux = stack[find_relative_size(stack, size) - 1];
-	i = find_relative_size(stack, size) - 1;
-	while (i > 0)
+	x = 0;
+	aux = s->stack_a[0];
+	while (x < get_relative_size(s->stack_a, s->size) - 1)
 	{
-		stack[i] = stack[i - 1];
-		i--;
+		s->stack_a[x] = s->stack_a[x + 1];
+		x++;
 	}
-	stack[0] = aux;
-	if (stackOptional != NULL)
+	s->stack_a[x] = 0;
+	x = get_relative_size(s->stack_b, s->size);
+	while (x > 0)
 	{
-		aux = stackOptional[find_relative_size(stack, size) - 1];
-		i = find_relative_size(stack, size) - 1;
-		while (i > 0)
-		{
-			stackOptional[i] = stackOptional[i - 1];
-			i--;
-		}
-		stackOptional[0] = aux;
+		s->stack_b[x] = s->stack_b[x - 1];
+		x--;
 	}
+	s->stack_b[0] = aux;
 	return (1);
 }
 
-int	fake_action_rx(char **stack, char **stackOptional, int size)
+int	fake_action_rrx(int *stack, int *optional, t_stacks *s)
 {
-	char	*aux;
-	int		i;
+	int	x;
+	int	aux;
+	int	moves;
 
+	x = get_relative_size(stack, s->size) - 1;
+	aux = stack[x];
+	moves = 0;
+	while (x > 0)
+	{
+		stack[x] = stack[x - 1];
+		x--;
+	}
+	stack[x] = aux;
+	if (optional != NULL)
+		moves += fake_action_rx(optional, NULL, s);
+	moves++;
+	return (moves);
+}
+
+int	fake_action_rx(int *stack, int *optional, t_stacks *s)
+{
+	int	x;
+	int	aux;
+	int	moves;
+
+	x = 0;
 	aux = stack[0];
-	i = 0;
-	while (i < find_relative_size(stack, size) - 1)
+	moves = 0;
+	while (x < get_relative_size(stack, s->size) - 1)
 	{
-		stack[i] = stack[i + 1];
-		i++;
+		stack[x] = stack[x + 1];
+		x++;
 	}
-	stack[find_relative_size(stack, size) - 1] = aux;
-	if (stackOptional != NULL)
-	{
-		aux = stackOptional[0];
-		i = 0;
-		while (i < find_relative_size(stack, size) - 1)
-		{
-			stackOptional[i] = stackOptional[i + 1];
-			i++;
-		}
-		stackOptional[find_relative_size(stack, size) - 1] = aux;
-	}
-	return (1);
+	stack[x] = aux;
+	if (optional != NULL)
+		moves += fake_action_rx(optional, NULL, s);
+	moves++;
+	return (moves);
 }
 
-int	fake_action_sx(char **stack, char **stackOptional)
+int	fake_action_sx(int *stack, int *optional, t_stacks *s)
 {
-	char	*aux;
+	int	aux;
+	int	moves;
 
+	moves = 0;
 	aux = stack[0];
 	stack[0] = stack[1];
 	stack[1] = aux;
-	if (stackOptional != NULL)
-	{
-		aux = stackOptional[0];
-		stackOptional[0] = stackOptional[1];
-		stackOptional[1] = aux;
-	}
-	return (1);
+	if (optional != NULL)
+		moves += fake_action_sx(optional, NULL, s);
+	moves++;
+	return (moves);
 }
