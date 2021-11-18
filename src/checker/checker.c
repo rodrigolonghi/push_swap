@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 20:34:23 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/18 20:13:19 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/18 20:46:29 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	auxiliary(int argc, char **args, char **argv, int n_args)
 	{
 		check_instruction(line, i, s);
 		ft_lstadd_back(&i, ft_lstnew(line));
+		free(line);
 	}
 	check_sorter(s, i);
 	free_all(s, i);
