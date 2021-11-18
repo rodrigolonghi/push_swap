@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 20:39:45 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/11/18 20:11:55 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/11/18 20:15:36 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ fclean: clean
 	@echo "\033[31mDeleting EVERYTHING...\n"
 	@make fclean -C $(LIBFT_DIR)
 	@rm -rf $(NAME)
+	@rm -rf $(CHECKER)
 	@echo "\033[31mProject cleaned up!"
 
 re: fclean all
