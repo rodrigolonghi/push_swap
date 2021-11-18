@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 20:36:30 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/11/12 01:44:15 by rfelipe-         ###   ########.fr        #
+#    Updated: 2021/11/18 20:01:02 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,18 @@ SRCS = ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
 		ft_isdigit.c \
+		ft_lstadd_back.c \
+		ft_lstlast.c \
+		ft_lstnew.c \
+		ft_lstsize.c \
 		ft_memcmp.c \
 		ft_putchar_fd.c \
 		ft_putstr_fd.c \
 		ft_split.c \
 		ft_strchr.c \
-		ft_strlen.c
+		ft_strlen.c \
+		get_next_line_utils.c \
+		get_next_line.c \
 
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:%.c=%.o))
 SRCS := $(addprefix $(SRC_DIR)/,$(SRC))
