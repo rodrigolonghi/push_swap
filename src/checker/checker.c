@@ -6,11 +6,18 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 20:34:23 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/18 20:46:29 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/01/04 19:21:02 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+static void	check_exit(int argc)
+{
+	if (argc == 1)
+		exit(0);
+	throw_error();
+}
 
 static void	auxiliary(int argc, char **args, char **argv, int n_args)
 {
@@ -50,6 +57,6 @@ int	main(int argc, char **argv)
 		|| (argc > 2 && check_args(n_args, argv + 1, argc)))
 		auxiliary(argc, args, argv, n_args);
 	else
-		throw_error();
+		check_exit(argc);
 	return (0);
 }

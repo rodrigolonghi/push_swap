@@ -6,11 +6,18 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 21:47:09 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/13 23:23:38 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/01/04 19:19:34 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+static void	check_exit(int argc)
+{
+	if (argc == 1)
+		exit(0);
+	throw_error();
+}
 
 int	main(int argc, char **argv)
 {
@@ -37,6 +44,6 @@ int	main(int argc, char **argv)
 		free_stack(s);
 	}
 	else
-		throw_error();
+		check_exit(argc);
 	return (0);
 }
