@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 20:39:45 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/11/18 20:43:24 by rfelipe-         ###   ########.fr        #
+#    Updated: 2022/04/02 17:47:56 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,29 +47,29 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
 	@$(CC) ./src/push_swap/push_swap.c -lm $(OBJ) $(LIBFT) -o $(NAME)
-	@echo "\033[32mPush swap compiled!"
+	@echo "Push swap compiled!"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) -c $(FLAGS) -I$(INCLUDE_DIR) -o $@ $<
 
 $(LIBFT):
-	@echo "\033[33mCompiling project...\n"
+	@echo "Compiling project...\n"
 	@make -C $(LIBFT_DIR)
 
 bonus: $(LIBFT) $(OBJ)
 	@$(CC) ./src/checker/checker.c -lm $(OBJ) $(LIBFT) -o $(CHECKER)
-	@echo "\033[32mPush swap checker compiled!"
+	@echo "Push swap checker compiled!"
 
 clean:
 	@make clean -C $(LIBFT_DIR)
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@echo "\033[31mDeleting EVERYTHING...\n"
+	@echo "Deleting EVERYTHING...\n"
 	@make fclean -C $(LIBFT_DIR)
 	@rm -rf $(NAME)
 	@rm -rf $(CHECKER)
-	@echo "\033[31mProject cleaned up!"
+	@echo "Project cleaned up!"
 
 re: fclean all
