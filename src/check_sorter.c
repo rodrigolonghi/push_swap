@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:57:37 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/18 20:11:17 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/04/02 20:01:28 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,15 @@ void	check_sorter(t_stacks *s, t_list *i)
 	int	size;
 
 	size = ft_lstsize(i);
-	if (check_is_sorted(s) && size != 0)
-		ft_putstr_fd("KO\n", 1);
-	else
+	x = 0;
+	while (x < size)
 	{
-		x = 0;
-		while (x < size)
-		{
-			do_action(s, i);
-			i = i->next;
-			x++;
-		}
-		if (check_is_sorted(s))
-			ft_putstr_fd("OK\n", 1);
-		else
-			ft_putstr_fd("KO\n", 1);
+		do_action(s, i);
+		i = i->next;
+		x++;
 	}
+	if (check_is_sorted(s))
+		ft_putstr_fd("OK\n", 1);
+	else
+		ft_putstr_fd("KO\n", 1);
 }
