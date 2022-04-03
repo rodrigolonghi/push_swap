@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 21:44:06 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/18 20:46:34 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/04/02 22:15:04 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int		fake_action_pa(t_stacks *s);
 int		fake_to_top(int *stack, t_stacks *s, int pos);
 void	quick_sort(t_stacks *s, int pivot);
 int		get_args_number(int argc, char **argv);
-void	free_all(t_stacks *s, t_list *list);
-void	check_instruction(char *line, t_list *i, t_stacks *s);
-void	check_sorter(t_stacks *s, t_list *i);
+void	free_all(t_stacks *s, int *inst);
+void	check_instruction(char *line, int *inst, t_stacks *s);
+void	check_sorter(t_stacks *s, int *inst, int sizez);
 
 #endif
