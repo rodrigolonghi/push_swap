@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:24:29 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/12 18:11:41 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/04/03 00:15:32 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	check_is_sorted(t_stacks *s)
 	int	aux;
 	int	size;
 
+	size = get_relative_size(s->stack_b, s->size);
+	if (size > 0)
+		return (0);
 	x = 0;
 	size = get_relative_size(s->stack_a, s->size);
 	while (x < size)
