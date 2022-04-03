@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 20:36:30 by rfelipe-          #+#    #+#              #
-#    Updated: 2021/11/18 20:01:02 by rfelipe-         ###   ########.fr        #
+#    Updated: 2022/04/02 20:43:36 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,6 @@ SRCS = ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
 		ft_isdigit.c \
-		ft_lstadd_back.c \
-		ft_lstlast.c \
-		ft_lstnew.c \
-		ft_lstsize.c \
 		ft_memcmp.c \
 		ft_putchar_fd.c \
 		ft_putstr_fd.c \
