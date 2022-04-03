@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 20:34:23 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/04/02 22:53:16 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/04/02 23:13:09 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ static void	auxiliary(int argc, char **args, char **argv, int n_args)
 		size++;
 	}
 	check_sorter(s, inst, size);
-	free_all(s, inst);
+	free_stack(s);
+	if (size > 0)
+		free(inst);
 }
 
 int	main(int argc, char **argv)

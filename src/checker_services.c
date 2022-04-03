@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 23:39:00 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/04/02 20:45:04 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/04/02 23:14:06 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	check_instruction(char *line, int *inst, t_stacks *s)
 		&& ft_memcmp("rrr", line, len) != 0 && ft_memcmp("pa", line, len) != 0
 		&& ft_memcmp("pb", line, len) != 0)
 	{
-		free_all(s, inst);
+		free_stack(s);
+		free(inst);
 		throw_error();
 	}
 	if (ft_memcmp("sa", line, 2) != 0 && ft_memcmp("sb", line, 2) != 0
@@ -34,7 +35,8 @@ void	check_instruction(char *line, int *inst, t_stacks *s)
 		&& ft_memcmp("rrr", line, 3) != 0 && ft_memcmp("pa", line, 2) != 0
 		&& ft_memcmp("pb", line, 2) != 0)
 	{
-		free_all(s, inst);
+		free_stack(s);
+		free(inst);
 		throw_error();
 	}
 }

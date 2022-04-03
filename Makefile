@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 20:39:45 by rfelipe-          #+#    #+#              #
-#    Updated: 2022/04/02 17:47:56 by rfelipe-         ###   ########.fr        #
+#    Updated: 2022/04/02 23:13:28 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRC = $(SRC_DIR)/actions.c \
 		$(SRC_DIR)/sorter.c \
 		$(SRC_DIR)/stack_services.c \
 		$(SRC_DIR)/throw_error.c \
-		$(SRC_DIR)/free_all.c \
 		$(SRC_DIR)/checker_services.c
 
 all: $(NAME)
