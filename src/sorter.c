@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 02:50:05 by rfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/12 19:36:08 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/04/07 23:13:17 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	case_five(t_stacks *s)
 		action_pb(s);
 		x++;
 	}
-	if (check_is_sorted(s) == 0)
+	if (!(s->stack_a[0] < s->stack_a[1] && s->stack_a[1] < s->stack_a[2]))
 		case_three(s);
 	action_pa(s);
 	action_pa(s);
